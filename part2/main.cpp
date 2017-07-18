@@ -8,7 +8,7 @@ using namespace std;
 void start()
 {
      /* stuff to clear */
-     
+     textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
      textout_ex(screen, font, "Pick the type of quizes:", 5, 10, makecol(1, 1, 255), makecol(150, 1,1));
      textout_ex(screen, font, "Enter (1) for entire text:", 5, 20, makecol(1, 1, 255), makecol(150,1,1));
      textout_ex(screen, font, "Enter (2) for particular unit:", 5, 30, makecol(1, 1, 255), makecol(150,1,1));
@@ -21,7 +21,6 @@ int main(void) {
 	allegro_init(); 
 	set_gfx_mode(GFX_SAFE, 640, 480, 0, 0); 
 	install_keyboard(); 
-	textout_ex(screen, font, "Welcome to Pocket Trivia Game", 1, 1, 10, -1); 
 	start();
     release_screen();
 	
