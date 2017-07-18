@@ -1,1 +1,1 @@
-# assignment1
+# COMP369 assignment1
