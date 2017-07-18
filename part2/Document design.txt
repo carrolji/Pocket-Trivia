@@ -1,0 +1,21 @@
+General Overview
+The game is to quiz learners on their knowledge on material covered in the etextbook
+we are using for this course.
+Target System and Requirements
+
+The game should provide a mechanism for users to choose if the quiz will be on the
+entire text, a particular unit, or a particular chapter, and then the questions will be
+read into the game program accordingly.
+
+
+The multiple-choice question presented to the user each time should be randomly
+selected from the list imported from the text file or files.
+
+The game will show the points the user scored dynamically in the form of ratio.
+
+The game should begin with a welcome/introduction page that tells what the game is
+and how the user should play, and then should advance to the quiz after a delay or a
+key-press.
+
+Use graphics, colours, background music, and sound effects to make the game
+interesting and user-friendly.
