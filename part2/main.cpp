@@ -5,27 +5,28 @@
 #include<stdlib.h>
 using namespace std;
 
-void start();
+void menu();
 void clear_screen();
-void get_input();
+void getinput();
 
-//BITMAP *buffer = create_bitmap(640, 480);
 int main(void) {
 	int ret;
 	allegro_init();  
-	install_keyboard();
-	install_timer();
+	install_keyboard(); 
+    install_timer();
+    srand(time(NULL));
+	
 	ret = set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
 	if(ret != 0){
 		allegro_message(allegro_error);
 		return 1;
 	} 
-	start();
-	if(key[KEY_1]){
-			circle(screen,300,300,50,15);
-	}
-	
-	string line;
+	menu();
+	//check for keypresses
+    //if (keypressed())
+        //getinput();
+
+/*	string line;
 	ifstream myfile ("test.txt");
 	if (myfile.is_open()){
 		while(!myfile.eof()){
@@ -36,11 +37,11 @@ int main(void) {
 		myfile.close();
 	}
 	else cout << "Unable to open file";
-	
+*/	
 	while(!key[KEY_ESC]){
-		
-		
-		//rectfill(screen,0,0,640,480,15);
+    	
+        clear_screen();
+    	
 	}; 
 	allegro_exit(); 
 	return 0;
@@ -48,7 +49,7 @@ int main(void) {
 END_OF_MAIN()
 
 
-void start()
+void menu()
 {
      /* stuff to clear */
      textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
@@ -60,5 +61,17 @@ void start()
  }
 
 void clear_screen(){
-	rectfill(screen,0,0,640,480,15);
+	if (key[KEY_C])
+		rectfill(screen,0,0,640,480,0);
+}
+
+void getinput()
+{
+    rest(1000); 
+	if (key[KEY_1])
+        rectfill(screen,0,0,640,480,15);
+    if (key[KEY_2])
+    	rectfill(screen,0,0,640,480,15);
+    if (key[KEY_3])
+    	rectfill(screen,0,0,640,480,15);
 }
