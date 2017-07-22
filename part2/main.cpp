@@ -40,16 +40,8 @@ int main(void) {
 	else cout << "Unable to open file";
 */	
 	while(!key[KEY_ESC]){
-    	
-        if (key[KEY_1])
-        	rectfill(screen,0,0,640,480,15);
-    	if (key[KEY_2]){
-    		clear_screen();
-    		chapter_list();
-		}
-    	if (key[KEY_3])
-    		rectfill(screen,0,0,640,480,15);
-    	
+		getinput();
+
 	}; 
 	allegro_exit(); 
 	return 0;
@@ -60,19 +52,26 @@ END_OF_MAIN()
 void menu()
 {
     textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
-    textout_ex(screen, font, "Pick the type of quizes:", 5, 10, makecol(1, 1, 255), makecol(150, 1,1));
-    textout_ex(screen, font, "Enter (1) for entire text:", 5, 20, makecol(1, 1, 255), makecol(150,1,1));
-    textout_ex(screen, font, "Enter (2) for particular unit:", 5, 30, makecol(1, 1, 255), makecol(150,1,1));
-    textout_ex(screen, font, "Enter (3) for particular chapter:", 5, 40, makecol(1, 1, 255), makecol(150,1,1));
+    textout_ex(screen, font, "The game is to quiz your knowledge based on the textbook ", 5, 10, 10, -1);
+    textout_ex(screen, font, "Game Programming All in One, 3rd Edition textbook by Jonathan S.Harbour", 5, 20, 10, -1);
+    textout_ex(screen, font, "Pick the type of quizes:", 5, 40, 10, -1);
+    textout_ex(screen, font, "Enter (1) for entire text", 5, 50, 10, -1);
+    textout_ex(screen, font, "Enter (2) for particular unit", 5, 60, 10, -1);
+    textout_ex(screen, font, "Enter (3) for particular chapter", 5, 70, 10, -1);
      
  }
  
 void chapter_list()
 {
-	textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
-    textout_ex(screen, font, "Pick a chapter... ", 5, 10, makecol(1, 1, 255), makecol(150, 1,1));
-    textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, makecol(1, 1, 255), makecol(150,1,1));
+	//textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
+    textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
+    textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
 	
+}
+
+void unit_list(){
+	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
+    textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
 }
 
 void clear_screen(){
@@ -82,13 +81,15 @@ void clear_screen(){
 
 void getinput()
 {
-    rest(1000); 
 	if (key[KEY_1])
-        rectfill(screen,0,0,640,480,15);
+		clear_screen();
     if (key[KEY_2]){
+    	clear_screen();
+    	unit_list();
+	}
+    if (key[KEY_3]){
     	clear_screen();
     	chapter_list();
 	}
-    if (key[KEY_3])
-    	rectfill(screen,0,0,640,480,15);
+    	
 }
