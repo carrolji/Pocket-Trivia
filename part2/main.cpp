@@ -8,13 +8,15 @@ using namespace std;
 void menu();
 void clear_screen();
 void getinput();
-void chapter_list();
-void read_text();
-void unit_list();
+void get_unit();
 void get_chapter();
+void display_score(int correct, int total_questions);
+void read_text(int chp_num);
 
 int main(void) {
 	int ret;
+	int correct = 0;
+	int total_questions = 0;
 	allegro_init();  
 	install_keyboard(); 
     install_timer();
@@ -35,42 +37,29 @@ int main(void) {
 	
 
 	while(!key[KEY_ESC]){
+		
 
 		if(key[KEY_M]){
 			clear_screen();
 			menu();
 		}
-		if (key[KEY_1])
-		clear_screen();
-		//read_text();
+		if (key[KEY_1]){
+			clear_screen();
+			display_score(correct, total_questions);
+		}
+			
+
     	else if(key[KEY_2]){
     		clear_screen();
-    		textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
-    		textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
-    		for(int n=1; n<=8;n++){
-    			textprintf_ex(screen, font, SCREEN_W / 2,40*n, 15,-1, "Unit %d", n);
-    			cout << "value of a: " << n << endl;
-			}
-    		
-    		
+    		display_score(correct, total_questions);
+    		get_unit();
+    			
 		}
     	else if(key[KEY_3]){
     		clear_screen();
-    		textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
-    		textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-
-    		for(int n=1; n<=22;n++){
-    			
-    			if(n>=12){
-    				textprintf_ex(screen, font, SCREEN_W/2,(n*40)-440, 15,-1, "Unit %d", n);
-    				cout << "value of a: " << n << endl;
-				}
-				else{
-					textprintf_ex(screen, font, 20,40*n, 15,-1, "Unit %d", n);
-				}
-    			
-			}
-    	
+    		display_score(correct, total_questions);
+			get_chapter();
+    		
 		}
 
 		
@@ -88,22 +77,6 @@ void menu()
     textout_ex(screen, font, "Enter (3) for particular chapter", 5, 40, 10, -1);
      
  }
- 
-
-void read_text(){
-	string line;
-	ifstream myfile ("test.txt");
-	if (myfile.is_open()){
-		while(!myfile.eof()){
-			getline (myfile, line);
-			cout << line << '\n';
-			textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
-		}
-		myfile.close();
-	}
-	else cout << "Unable to open file";
-	
-}
 
 void clear_screen(){
 	rectfill(screen,0,0,640,480,0);
@@ -116,25 +89,56 @@ void getinput(){
 		//read_text();
     else if(key[KEY_2]){
     	clear_screen();
-    	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
-    	textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
-    	
-    	
-		
+    	get_unit();
 	}
     else if(key[KEY_3]){
     	clear_screen();
-    	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
-    	textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-    	
-    	
+    	get_chapter();	
 	}
 }
 
+void get_unit(){
+	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
+    textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
+    for(int n=1; n<=8;n++){
+    	textprintf_ex(screen, font, SCREEN_W / 2,40*n, 15,-1, "Unit %d", n);
+    	cout << "value of a: " << n << endl;
+	}
+}
 void get_chapter(){
-	for(int n=1; n<=8;n++){
-    			textprintf_ex(screen, font, 0,30*n, 15,-1, "Chapter %d", n);
-    			cout << "value of a: " << n << endl;
-			}
+	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
+    textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
+	for(int n=1; n<=22;n++){
+    			
+    	if(n>=12){
+   			textprintf_ex(screen, font, SCREEN_W/2,(n*40)-440, 15,-1, "Unit %d", n);
+  			cout << "value of a: " << n << endl;
+		}
+		else{
+			textprintf_ex(screen, font, 20,40*n, 15,-1, "Unit %d", n);
+		}
+    			
+	}
+}
+
+void display_score(int correct,int total_questions){
+	textprintf_right_ex(screen, font, SCREEN_W - 10, 20,
+                          makecol(200, 200, 20), -1,
+                          "Score %d : %d", correct,total_questions);
+}
+
+void read_text(int chp_num){
+	string line;
+	ifstream myfile ("test.txt");
+	if (myfile.is_open()){
+		while(!myfile.eof()){
+			getline (myfile, line);
+			cout << line << '\n';
+			textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
+		}
+		myfile.close();
+	}
+	else cout << "Unable to open file";
+	
 }
 
