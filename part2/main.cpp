@@ -1,6 +1,7 @@
 #include <allegro.h> 
 #include<iostream>
 #include<fstream>
+#include <sstream>
 #include<string>
 #include<stdlib.h>
 using namespace std;
@@ -34,6 +35,7 @@ int main(void) {
     rest(1000);
     clear_screen();
     menu();
+    read_text(1);
 	
 
 	while(!key[KEY_ESC]){
@@ -127,14 +129,21 @@ void display_score(int correct,int total_questions){
                           "Score %d : %d", correct,total_questions);
 }
 
-void read_text(int chp_num){
+void read_text(int num){
+	
+	ifstream myfile;
 	string line;
-	ifstream myfile ("test.txt");
+	char fn [100];
+	snprintf (fn, sizeof fn, "chp%d.txt", num);
+	myfile.open(fn);
+    cout << fn;
+	
+	/*ifstream myfile("chp" + std::to_string(num)+ ".txt");*/
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
 			cout << line << '\n';
-			textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
+		//	textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
 		}
 		myfile.close();
 	}
