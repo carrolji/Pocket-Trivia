@@ -12,7 +12,8 @@ void getinput();
 void get_unit();
 void get_chapter();
 void display_score(int correct, int total_questions);
-void read_text(int chp_num);
+void read_text(int chp_num,char question);
+char get_answer(int num, char question);
 
 int main(void) {
 	int ret;
@@ -35,7 +36,7 @@ int main(void) {
     rest(1000);
     clear_screen();
     menu();
-    read_text(2);
+    
 	
 
 	while(!key[KEY_ESC]){
@@ -61,6 +62,10 @@ int main(void) {
     		clear_screen();
     		display_score(correct, total_questions);
 			get_chapter();
+			rest(2000);
+			clear_screen();
+			read_text(1,'1');
+			get_answer(1,'1');
     		
 		}
 
@@ -113,11 +118,11 @@ void get_chapter(){
 	for(int n=1; n<=22;n++){
     			
     	if(n>=12){
-   			textprintf_ex(screen, font, SCREEN_W/2,(n*40)-440, 15,-1, "Unit %d", n);
+   			textprintf_ex(screen, font, SCREEN_W/2,(n*40)-440, 15,-1, "Chapter %d", n);
   			cout << "value of a: " << n << endl;
 		}
 		else{
-			textprintf_ex(screen, font, 20,40*n, 15,-1, "Unit %d", n);
+			textprintf_ex(screen, font, 20,40*n, 15,-1, "Chapter %d", n);
 		}
     			
 	}
@@ -129,7 +134,7 @@ void display_score(int correct,int total_questions){
                           "Score %d : %d", correct,total_questions);
 }
 
-void read_text(int num){
+void read_text(int num,char question){
 	
 	ifstream myfile;
 	string line;
@@ -140,7 +145,7 @@ void read_text(int num){
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
-  	char question = '5'; //must pass the parameter!!
+  	//char question = '5'; //must pass the parameter!!
   	int lines_read = 0;
 	if (myfile.is_open()){
 		while(!myfile.eof()){
@@ -167,4 +172,49 @@ void read_text(int num){
 	myfile.close();
 	
 }
+
+char get_answer(int num, char question){
+	
+	ifstream myfile;
+	string line;
+	char filename [100];
+	snprintf (filename, sizeof filename, "answer%d.txt", num);
+	myfile.open(filename);
+	
+	cout<<filename;
+	if(!myfile) {
+   	 	cout << "Cannot open input file.\n";
+  	}
+  	
+  	int lines_read = 0;
+  	char answer;
+	if (myfile.is_open()){
+		while(!myfile.eof()){
+			getline (myfile, line);
+    		
+    		if (line.length() > 0 && line[0] == question){
+				cout << line << '\n';
+				question++;
+				
+				for(int n=1;n <=5;n++){
+					getline (myfile, line);
+					if(line.length()> 0 && line[0] == question){
+						break;
+					}
+					else{
+						textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
+						cout << line << endl;
+						answer = line[0];
+						cout << answer << endl;
+					}
+				}
+			}
+		}
+	}
+	myfile.close();
+	
+	return answer;
+	
+}
+
 

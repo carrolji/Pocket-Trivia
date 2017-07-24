@@ -1,0 +1,20 @@
+1. What version of Allegro are we using here?
+C. 4.2
+2. GNU is an acronym for which of the following phrases?
+A. GNU is Not Unix
+3. What is the primary website for Dev-C++?
+B. http://www.bloodshed.net
+4. What is the name of the compiler used by Dev-Pascal?
+A. GNU Pascal
+5. What version of Dev-C++ are we using in this book?
+C. 5.0
+6. Which version of Visual C++ are we focusing primarily on in this book?
+C. 7.1 (2003)
+7. What distinctive feature of Dev-C++ sets it apart from commercial devel- opment tools?
+D. All of the above
+8. What is the name of the game programming library featured in this chapter?
+D. Allegro
+9. What function must be called before you use the Allegro library?
+C. allegro_init()
+10. What statement must be included at the end of main() in an Allegro pro- gram?
+B. END_OF_MAIN()

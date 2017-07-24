@@ -1,0 +1,21 @@
+1. What is the term used to describe line-based graphics?
+A. Vector
+2. What does CRT stand for?
+C. Cathode Ray Tube
+3. What describes a function that draws a simple geometric shape, such as a point, line, rectangle, or circle?
+B. Graphics Primitive
+4. How many polygons does the typical 3D accelerator chip process at a time?
+C. 1
+5. What is comprised of three small streams of electrons of varying shades of red, green, and blue?
+D. Pixel
+6. What function is used to create a custom 24- or 32-bit color?
+A. makecol
+7. What function is used to draw filled rectangles?
+D. rectfill
+8. Which of the following is the correct definition of the circle function?
+A. void circle(BITMAP *bmp, int x, int y, int radius, int color);
+9. What function draws a set of curves based on a set of four input points
+stored in an array?
+C. spline
+10. Which text output function draws a formatted string with justification?
+D. textprintf_justify
