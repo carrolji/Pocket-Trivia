@@ -140,7 +140,7 @@ void read_text(int num){
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
-  	char question = '4'; //must pass the parameter!!
+  	char question = '5'; //must pass the parameter!!
   	int lines_read = 0;
 	if (myfile.is_open()){
 		while(!myfile.eof()){
@@ -149,14 +149,15 @@ void read_text(int num){
     		if (line.length() > 0 && line[0] == question){
 				cout << line << '\n';
 				question++;
-				//textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
+				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str());
 				
-				for(int n=0;n <=4;n++){
+				for(int n=1;n <=5;n++){
 					getline (myfile, line);
 					if(line.length()> 0 && line[0] == question){
 						break;
 					}
 					else{
+						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str());
 						cout << line << endl;
 					}
 				}
