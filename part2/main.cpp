@@ -1,5 +1,5 @@
 #include <allegro.h> 
-#include<iostream>
+#include <iostream>
 #include<fstream>
 #include <sstream>
 #include<string>
@@ -35,7 +35,7 @@ int main(void) {
     rest(1000);
     clear_screen();
     menu();
-    read_text(1);
+    read_text(2);
 	
 
 	while(!key[KEY_ESC]){
@@ -133,21 +133,37 @@ void read_text(int num){
 	
 	ifstream myfile;
 	string line;
-	char fn [100];
-	snprintf (fn, sizeof fn, "chp%d.txt", num);
-	myfile.open(fn);
-    cout << fn;
-	
-	/*ifstream myfile("chp" + std::to_string(num)+ ".txt");*/
+	char filename [100];
+	snprintf (filename, sizeof filename, "chp%d.txt", num);
+	myfile.open(filename);
+	//myfile.open("chp" + std::to_string(num)+ ".txt");
+	if(!myfile) {
+   	 	cout << "Cannot open input file.\n";
+  	}
+  	char question = '4'; //must pass the parameter!!
+  	int lines_read = 0;
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
-			cout << line << '\n';
-		//	textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
+    		
+    		if (line.length() > 0 && line[0] == question){
+				cout << line << '\n';
+				question++;
+				//textprintf_ex(screen, font, 0,24, 15,-1, "%s", line.c_str());
+				
+				for(int n=0;n <=4;n++){
+					getline (myfile, line);
+					if(line.length()> 0 && line[0] == question){
+						break;
+					}
+					else{
+						cout << line << endl;
+					}
+				}
+			}
 		}
-		myfile.close();
 	}
-	else cout << "Unable to open file";
+	myfile.close();
 	
 }
 
