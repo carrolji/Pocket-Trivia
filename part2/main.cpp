@@ -18,7 +18,7 @@ char get_answer(int num, char question);
 int main(void) {
 	int ret;
 	int correct = 0;
-	int total_questions = 0;
+	int total_questions = 1;
 	allegro_init();  
 	install_keyboard(); 
     install_timer();
@@ -37,7 +37,7 @@ int main(void) {
     clear_screen();
     menu();
     
-	
+	char q = '1';
 
 	while(!key[KEY_ESC]){
 		
@@ -60,12 +60,18 @@ int main(void) {
 		}
     	else if(key[KEY_3]){
     		clear_screen();
-    		display_score(correct, total_questions);
 			get_chapter();
 			rest(2000);
-			clear_screen();
-			read_text(1,'1');
-			get_answer(1,'1');
+			for(int n=0; n <10; n++){
+				clear_screen();
+				display_score(correct, total_questions);
+				read_text(1,q);
+				get_answer(1,q);
+				q++;
+				rest(2000);
+				total_questions++;	
+			}
+			
     		
 		}
 
@@ -86,11 +92,12 @@ void menu()
  }
 
 void clear_screen(){
+	//Clear the game screen by filling with black rectangle
 	rectfill(screen,0,0,640,480,0);
 }
 
 void getinput(){
-	
+	//Get choice from the user in the menu mode
 	if (key[KEY_1])
 		clear_screen();
 		//read_text();
@@ -105,6 +112,7 @@ void getinput(){
 }
 
 void get_unit(){
+	//Print out unit list
 	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
     textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
     for(int n=1; n<=8;n++){
@@ -113,6 +121,7 @@ void get_unit(){
 	}
 }
 void get_chapter(){
+	//Print out chapter list
 	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
     textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
 	for(int n=1; n<=22;n++){

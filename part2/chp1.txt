@@ -17,6 +17,9 @@ A.Visual C++ B. Dev-C++ C.	Watcom C++ D. C++Builder
 8. What is the name of the most popular game development library in the world?
 A. OpenGL B. DJGPP C. DirectX D. Allegro
 9. Which of the following books discusses the gaming culture of the late 1980s and early 1990s with strong emphasis on the exploits of id Software?
-A.	Masters of Doom B.	The Age of Spiritual Machines C.	The Inmates Are Running the Asylum D. SiliconSnakeOil
+A. Masters of Doom 
+B. The Age of Spiritual Machines 
+C. The Inmates Are Running the Asylum 
+D. SiliconSnakeOil
 10. According to the author, which of the following is one of the best games made in the 1980s?
 A.	Civilization III B. Counter-Strike C.	King’s Quest IV: The Perils of Rosella D. Starflight

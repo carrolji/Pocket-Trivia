@@ -12,8 +12,7 @@ C. Civilization IV
 C. Gameplay
 7. What is the name of the free open-source IDE/compiler included on the CD-ROM?
 B. Dev-C++
-8. What is the name of the most popular game development library in the
-world? 
+8. What is the name of the most popular game development library in the world? 
 C. DirectX
 9. Which of the following books discusses the gaming culture of the late 1980s and early 1990s, with strong emphasis on the exploits of id Software?
 A. Masters of Doom 
