@@ -248,8 +248,8 @@ void get_user_ans(){
 void check_score(int answer, int question){
 	question--;
 	cout << "!!!!!!!" << question;
-	float total_score = 10.0/ (float)question;
-	textprintf_ex(screen, font, 5,80, 15,-1, "Total score: %f", total_score);
+	float total_score = (float)answer/ (float)question;
+	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %f", total_score);
 	if(total_score==1){
 		textout_ex(screen, font, "WOW! Perfect score! Congratulations!", 5, 90, 10, -1);
 	}
@@ -265,6 +265,8 @@ void check_score(int answer, int question){
 	else{
 		textout_ex(screen, font, "Sorry try again next time", 5, 90, 10, -1);
 	}
+	textout_ex(screen, font, "Enter m to go back to the main menu", 5, 100, 10, -1);
+	textout_ex(screen, font, "Esc to quit the game", 5, 110, 10, -1);
 	
 	
 	
