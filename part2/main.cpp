@@ -17,12 +17,15 @@ void read_text(int chp_num,char question);
 char get_answer(int num, char question);
 void get_user_ans();
 void check_score(int answer, int question);
+int unit_list(int unit);
+int rand_num(int min, int max);
 
 int main(void) {
 	int ret;
 	int correct = 0;
 	int total_questions = 1;
 	char q = '0';
+	int chapter;
 	allegro_init();  
 	install_keyboard(); 
     install_timer();
@@ -45,11 +48,31 @@ int main(void) {
 		if (key[KEY_1]){
 			clear_screen();
 			display_score(correct, total_questions);
+			
+			chapter = rand_num(1,22);
+    		cout << chapter << endl;
 		}
     	else if(key[KEY_2]){
     		clear_screen();
     		display_score(correct, total_questions);
     		get_unit();
+    		while(!key[KEY_ENTER]);
+    		int unit =1; //testing
+    		chapter = unit_list(unit); 
+    		
+    		while(q <= '9'){
+				clear_screen();
+				display_score(correct, total_questions); //displaying score
+				read_text(chapter,q); //read the question
+				rest(1000);
+				cout << "THIS IS CHAPTER: " << chapter << endl;
+				get_user_ans();
+				get_answer(chapter,q); //get the answer 
+				total_questions++;	
+				q++;
+			}
+			clear_screen();
+			check_score(correct,total_questions);
     			
 		}
     	else if(key[KEY_3]){
@@ -128,6 +151,46 @@ void get_unit(){
     	textprintf_ex(screen, font, SCREEN_W / 2,40*n, 15,-1, "Unit %d", n);
     	cout << "value of a: " << n << endl;
 	}
+}
+
+int rand_num(int min, int max){
+	srand(time(NULL)); // Seed the time
+	int finalNum = rand()%(max-min+1)+min;
+	return finalNum;
+	
+	//taken from: https://stackoverflow.com/questions/12657962/how-do-i-generate-a-random-number-between-two-variables-that-i-have-stored 
+}
+int unit_list(int unit){
+	// List of unit with the following chapter(s)
+	int chapter;
+	switch(unit){
+		case 1:
+			chapter = rand_num(1,3);
+			break; 
+		case 2:
+			chapter = rand_num(4,6);
+			break;
+		case 3:
+			chapter = 17;
+			break;
+		case 4:
+			chapter = rand_num(7,10);
+			break;
+		case 5:
+			chapter = 11;
+			break;
+		case 6:
+			chapter = rand_num(12,16);
+			break;
+		case 7:
+			chapter = rand_num(18,19);
+			break;
+		case 8:
+			chapter = rand_num(20,22);
+			break;
+	}
+	return chapter;
+	
 }
 void get_chapter(){
 	//Print out chapter list
@@ -224,7 +287,7 @@ char get_answer(int num, char question){
 						break;
 					}
 					else{
-						//textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
+						textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
 						cout << line << endl;
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
@@ -247,7 +310,6 @@ void get_user_ans(){
 
 void check_score(int answer, int question){
 	question--;
-	cout << "!!!!!!!" << question;
 	float total_score = (float)answer/ (float)question;
 	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %f", total_score);
 	if(total_score==1){
@@ -267,8 +329,6 @@ void check_score(int answer, int question){
 	}
 	textout_ex(screen, font, "Enter m to go back to the main menu", 5, 100, 10, -1);
 	textout_ex(screen, font, "Esc to quit the game", 5, 110, 10, -1);
-	
-	
 	
 }
 
