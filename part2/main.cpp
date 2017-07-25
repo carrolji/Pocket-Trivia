@@ -6,6 +6,7 @@
 #include<stdlib.h>
 using namespace std;
 
+void welcome();
 void menu();
 void clear_screen();
 void getinput();
@@ -14,6 +15,7 @@ void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
 char get_answer(int num, char question);
+void get_user_ans();
 
 int main(void) {
 	int ret;
@@ -29,12 +31,7 @@ int main(void) {
 		allegro_message(allegro_error);
 		return 1;
 	} 
-	textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
-    textout_ex(screen, font, "The game is to quiz your knowledge based on the textbook ", 5, 10, 10, -1);
-    textout_ex(screen, font, "Game Programming All in One, 3rd Edition textbook by Jonathan S.Harbour", 5, 20, 10, -1);
-    textout_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", 5, 30, 10, -1);
-    rest(1000);
-    clear_screen();
+    welcome();
     menu();
     
 	char q = '0';
@@ -66,9 +63,10 @@ int main(void) {
 			//read_text(2,'9');
 			while(q <= '9'){
 				clear_screen();
-				display_score(correct, total_questions);
-				read_text(1,q);
-				get_answer(1,q);
+				display_score(correct, total_questions); //displaying score
+				read_text(1,q); //read the question
+				get_user_ans();
+				get_answer(1,q); //get the answer 
 				cout << "!!!!!!!!!!!!couting" <<q << endl;
 				rest(2000);
 				total_questions++;	
@@ -82,6 +80,18 @@ int main(void) {
 	return 0;
 } 
 END_OF_MAIN()
+
+void welcome(){
+	while (!key[KEY_ENTER]){
+		textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
+    	textout_ex(screen, font, "The game is to quiz your knowledge based on the textbook ", 5, 10, 10, -1);
+    	textout_ex(screen, font, "Game Programming All in One, 3rd Edition textbook by Jonathan S.Harbour", 5, 20, 10, -1);
+    	textout_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", 5, 30, 10, -1);	
+    	textout_ex(screen, font, "Enter to continue...", 5, 40, 10, -1);
+	};
+	
+    clear_screen();
+}
 
 void menu()
 {
@@ -229,6 +239,12 @@ char get_answer(int num, char question){
 	
 	return answer;
 	
+}
+
+void get_user_ans(){
+	while (!key[KEY_ENTER]){
+        textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);
+    }
 }
 
 
