@@ -37,7 +37,7 @@ int main(void) {
     clear_screen();
     menu();
     
-	char q = '1';
+	char q = '0';
 
 	while(!key[KEY_ESC]){
 		
@@ -62,17 +62,18 @@ int main(void) {
     		clear_screen();
 			get_chapter();
 			rest(2000);
-			for(int n=0; n <10; n++){
+			//clear_screen();
+			//read_text(2,'9');
+			while(q <= '9'){
 				clear_screen();
 				display_score(correct, total_questions);
 				read_text(1,q);
 				get_answer(1,q);
-				q++;
+				cout << "!!!!!!!!!!!!couting" <<q << endl;
 				rest(2000);
 				total_questions++;	
+				q++;
 			}
-			
-    		
 		}
 
 		
@@ -154,24 +155,29 @@ void read_text(int num,char question){
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
-  	//char question = '5'; //must pass the parameter!!
+  	//char question = '9'; //must pass the parameter!!
   	int lines_read = 0;
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
-    		
-    		if (line.length() > 0 && line[0] == question){
+    		cout << "****"<<question << endl;
+    		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				cout << line << '\n';
 				question++;
 				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str());
 				
-				for(int n=1;n <=5;n++){
+				for(int n=1;n <= 5;n++){
 					getline (myfile, line);
+					
 					if(line.length()> 0 && line[0] == question){
 						break;
 					}
+					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
+						break; //break the for loop
+					}
 					else{
 						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str());
+						//cout << "YOOOOOO: " << line[0] << endl;
 						cout << line << endl;
 					}
 				}
@@ -189,8 +195,7 @@ char get_answer(int num, char question){
 	char filename [100];
 	snprintf (filename, sizeof filename, "answer%d.txt", num);
 	myfile.open(filename);
-	
-	cout<<filename;
+
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
@@ -211,10 +216,10 @@ char get_answer(int num, char question){
 						break;
 					}
 					else{
-						textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
+						//textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
 						cout << line << endl;
 						answer = line[0];
-						cout << answer << endl;
+						cout << "ANSWER CHARACTER: " << answer << endl;
 					}
 				}
 			}
