@@ -16,11 +16,13 @@ void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
 char get_answer(int num, char question);
 void get_user_ans();
+void check_score(int answer, int question);
 
 int main(void) {
 	int ret;
 	int correct = 0;
 	int total_questions = 1;
+	char q = '0';
 	allegro_init();  
 	install_keyboard(); 
     install_timer();
@@ -34,10 +36,7 @@ int main(void) {
     welcome();
     menu();
     
-	char q = '0';
-
 	while(!key[KEY_ESC]){
-		
 
 		if(key[KEY_M]){
 			clear_screen();
@@ -47,8 +46,6 @@ int main(void) {
 			clear_screen();
 			display_score(correct, total_questions);
 		}
-			
-
     	else if(key[KEY_2]){
     		clear_screen();
     		display_score(correct, total_questions);
@@ -67,12 +64,13 @@ int main(void) {
 				read_text(1,q); //read the question
 				get_user_ans();
 				get_answer(1,q); //get the answer 
-				cout << "!!!!!!!!!!!!couting" <<q << endl;
-				rest(2000);
 				total_questions++;	
 				q++;
 			}
+			clear_screen();
+			check_score(correct,total_questions);
 		}
+		
 
 		
 	}; 
@@ -86,8 +84,9 @@ void welcome(){
 		textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
     	textout_ex(screen, font, "The game is to quiz your knowledge based on the textbook ", 5, 10, 10, -1);
     	textout_ex(screen, font, "Game Programming All in One, 3rd Edition textbook by Jonathan S.Harbour", 5, 20, 10, -1);
-    	textout_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", 5, 30, 10, -1);	
-    	textout_ex(screen, font, "Enter to continue...", 5, 40, 10, -1);
+    	textout_ex(screen, font, "Each set of game will present you 10 random multiple-choice questions", 5, 30, 10, -1);
+    	textout_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", 5, 40, 10, -1);	
+    	textout_ex(screen, font, "Enter to continue...", 5, 50, 10, -1);
 	};
 	
     clear_screen();
@@ -111,7 +110,6 @@ void getinput(){
 	//Get choice from the user in the menu mode
 	if (key[KEY_1])
 		clear_screen();
-		//read_text();
     else if(key[KEY_2]){
     	clear_screen();
     	get_unit();
@@ -245,6 +243,31 @@ void get_user_ans(){
 	while (!key[KEY_ENTER]){
         textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);
     }
+}
+
+void check_score(int answer, int question){
+	question--;
+	cout << "!!!!!!!" << question;
+	float total_score = 10.0/ (float)question;
+	textprintf_ex(screen, font, 5,80, 15,-1, "Total score: %f", total_score);
+	if(total_score==1){
+		textout_ex(screen, font, "WOW! Perfect score! Congratulations!", 5, 90, 10, -1);
+	}
+	else if(total_score>0.8){
+		textout_ex(screen, font, "Great job!", 5, 90, 10, -1);
+	}
+	else if(total_score>0.5){
+		textout_ex(screen, font, "Well done!", 5, 90, 10, -1);
+	}
+	else if(total_score==0.5){
+		textout_ex(screen, font, "You passed!", 5, 90, 10, -1);
+	}
+	else{
+		textout_ex(screen, font, "Sorry try again next time", 5, 90, 10, -1);
+	}
+	
+	
+	
 }
 
 
