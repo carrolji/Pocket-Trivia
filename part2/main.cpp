@@ -10,7 +10,7 @@ void welcome();
 void menu();
 void clear_screen();
 void getinput();
-void get_unit();
+int get_unit();
 void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
@@ -19,6 +19,7 @@ int get_user_ans(char answer);
 void check_score(int answer, int question);
 int unit_list(int unit);
 int rand_num(int min, int max);
+
 
 int main(void) {
 	int k,x,y;
@@ -31,10 +32,12 @@ int main(void) {
 	char q = '0';
 	int chapter;
 	int display = 0;
+	int unit;
 	
 	//initialize program
 	allegro_init();  
 	install_keyboard(); 
+	install_mouse();
     install_timer();
     srand(time(NULL));
 	
@@ -45,12 +48,9 @@ int main(void) {
 	} 
     welcome();
     menu();
-    x = SCREEN_W/2 - 60;
-    y = SCREEN_H/2 - 20;
+    
     
 	while(!key[KEY_ESC]){
-		
-		
 
 		if(key[KEY_M]){
 			clear_screen();
@@ -66,11 +66,10 @@ int main(void) {
     		
 		}
     	else if(key[KEY_2]){
+    		
     		clear_screen();
     		display_score(correct, total_questions);
-    		get_unit();
-    		while(!key[KEY_ENTER]);
-    		int unit =1; //testing
+    		unit = get_unit();
     		chapter = unit_list(unit); 
     		
     		while(q <= '9'){
@@ -79,8 +78,21 @@ int main(void) {
 				read_text(chapter,q); //read the question
 				rest(1000);
 				cout << "THIS IS CHAPTER: " << chapter << endl;
-				get_user_ans(answer);
-				get_answer(chapter,q,display); //get the answer 
+				answer = get_answer(chapter,q,0); //get the answer
+				user_ans = get_user_ans(answer);
+				
+				
+				if (answer == (char)user_ans){
+					cout << "True" << endl;
+					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
+					correct++;
+				}
+				else{
+					cout << "FALSE" << endl;
+					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					get_answer(1,q,1);
+				}
+				rest(2000);
 				total_questions++;	
 				q++;
 			}
@@ -92,12 +104,13 @@ int main(void) {
     		clear_screen();
 			get_chapter();
 			rest(2000);
-			//clear_screen();
-			//read_text(2,'9');
+			
 			while(q <= '9'){
 				clear_screen();
-				display_score(correct, total_questions); //displaying score
 				rest(1000);
+				//display score
+				display_score(correct, total_questions);
+				
 				
 				read_text(1,q); //read the question
 				
@@ -115,7 +128,6 @@ int main(void) {
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
 					get_answer(1,q,1);
 				}
-				
 				rest(2000);
 				total_questions++;	
 				q++;
@@ -174,14 +186,42 @@ void getinput(){
 	}
 }
 
-void get_unit(){
+int get_unit(){
+	int unit;
 	//Print out unit list
 	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
-    textout_ex(screen, font, "Enter a number between 1 to 8:", 5, 20, 10, -1);
-    for(int n=1; n<=8;n++){
-    	textprintf_ex(screen, font, SCREEN_W / 2,40*n, 15,-1, "Unit %d", n);
-    	cout << "value of a: " << n << endl;
-	}
+    textout_ex(screen, font, "Enter a number between 1 to 8 then press Enter:", 5, 20, 10, -1);
+	
+	while(!key[KEY_ENTER]){
+    	if (key[KEY_1]){
+    		unit =1;
+		}
+		else if (key[KEY_2]){
+    		unit =2;
+		}
+		else if (key[KEY_3]){
+    		unit =3;
+		}
+		else if (key[KEY_4]){
+			unit =4;
+		}
+		else if (key[KEY_5]){ 	
+			unit =5;
+		}
+		else if (key[KEY_6]){
+  			unit =6;
+		}
+		else if (key[KEY_7]){
+  			unit =7;
+		}
+		else if (key[KEY_8]){
+  			unit =8;
+		}
+		textprintf_ex(screen, font, 200, 50, 15, 0,
+            		"UNIT: %d", unit);
+				
+			};
+	return unit;
 }
 
 int rand_num(int min, int max){
