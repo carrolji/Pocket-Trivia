@@ -107,17 +107,16 @@ int main(void) {
 				
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
-					textout_ex(screen, font, "CORRECT!!!", 5, 460, 10, -1); 
+					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
 					correct++;
 				}
 				else{
-					get_answer(1,q,1);
 					cout << "FALSE" << endl;
-					textout_ex(screen, font, "WRONG!!!", 5, 460, 10, -1); 
-					
+					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					get_answer(1,q,1);
 				}
 				
-				rest(1000);
+				rest(2000);
 				total_questions++;	
 				q++;
 				
@@ -324,7 +323,7 @@ char get_answer(int num, char question, int display){
 					}
 					else{
 						if(display == 1){
-							textprintf_ex(screen, font, 5,350, 15,-1, "ANSWER: %s", line.c_str());	
+							textprintf_ex(screen, font, 5,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						cout << line << endl;
 						answer = line[0];
@@ -343,7 +342,7 @@ char get_answer(int num, char question, int display){
 int get_user_ans(char answer){
 	int k;
 	int scancode ,ascii;
-	textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);	
+	textout_ex(screen, font, "Enter your answer: ", 5, 350, 10, -1);	
     
     while(!(key[KEY_A] || key[KEY_B] || key[KEY_C] || key[KEY_D])) {
     	k = readkey();
@@ -352,13 +351,11 @@ int get_user_ans(char answer){
     cout << "USER ANSWER: " << (char)ascii << endl; 
     ascii = ascii - 32; //convert to upper letter
     
-   	textprintf_ex(screen, font, 50, 410, 15, 0,
-            		"%-6c", (char)ascii);
+   	textprintf_ex(screen, font, 200, 350, 15, 0,
+            		"%c", (char)ascii);
     
     
-    	
 	}
-    
     
     return ascii;
     
