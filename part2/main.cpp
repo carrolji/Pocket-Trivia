@@ -14,7 +14,7 @@ void get_unit();
 void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
-char get_answer(int num, char question);
+char get_answer(int num, char question,int display);
 int get_user_ans();
 void check_score(int answer, int question);
 int unit_list(int unit);
@@ -30,6 +30,7 @@ int main(void) {
 	int total_questions = 1;
 	char q = '0';
 	int chapter;
+	int display = 0;
 	
 	//initialize program
 	allegro_init();  
@@ -79,7 +80,7 @@ int main(void) {
 				rest(1000);
 				cout << "THIS IS CHAPTER: " << chapter << endl;
 				get_user_ans();
-				get_answer(chapter,q); //get the answer 
+				get_answer(chapter,q,display); //get the answer 
 				total_questions++;	
 				q++;
 			}
@@ -99,17 +100,22 @@ int main(void) {
 				rest(1000);
 				read_text(1,q); //read the question
 				//while (!key[KEY_ENTER]){
-				answer = get_answer(1,q); //get the answer
+				answer = get_answer(1,q,0); //get the answer
 				user_ans = get_user_ans();
 				
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
+					textout_ex(screen, font, "CORRECT!!!", 5, 460, 10, -1); 
 					correct++;
 				}
 				else{
+					get_answer(1,q,1);
 					cout << "FALSE" << endl;
+					textout_ex(screen, font, "WRONG!!!", 5, 460, 10, -1); 
+					
 				}
 				//}
+				rest(1000);
 				total_questions++;	
 				q++;
 				
@@ -283,7 +289,7 @@ void read_text(int num,char question){
 	
 }
 
-char get_answer(int num, char question){
+char get_answer(int num, char question, int display){
 	
 	ifstream myfile;
 	string line;
@@ -314,7 +320,9 @@ char get_answer(int num, char question){
 						break; //break the for loop
 					}
 					else{
-						textprintf_ex(screen, font, 5,350, 15,-1, "ANSWER: %s", line.c_str());
+						if(display == 1){
+							textprintf_ex(screen, font, 5,350, 15,-1, "ANSWER: %s", line.c_str());	
+						}
 						cout << line << endl;
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
@@ -340,8 +348,8 @@ int get_user_ans(){
     ascii = scancode_to_ascii(scancode);
     ascii = ascii - 32; //convert to upper letter
     
-   	textprintf_ex(screen, font, 20, 410, 15, 0,
-            		"Character  = %-6c", (char)ascii);
+   	textprintf_ex(screen, font, 50, 410, 15, 0,
+            		"%-6c", (char)ascii);
     
     cout << "USER ANSWER: " << (char)ascii << endl;
     
