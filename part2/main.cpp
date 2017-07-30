@@ -15,17 +15,23 @@ void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
 char get_answer(int num, char question);
-void get_user_ans();
+int get_user_ans();
 void check_score(int answer, int question);
 int unit_list(int unit);
 int rand_num(int min, int max);
 
 int main(void) {
+	int k,x,y;
+	int user_ans;
+	char answer;
+	int scancode ,ascii;
 	int ret;
 	int correct = 0;
 	int total_questions = 1;
 	char q = '0';
 	int chapter;
+	
+	//initialize program
 	allegro_init();  
 	install_keyboard(); 
     install_timer();
@@ -38,12 +44,17 @@ int main(void) {
 	} 
     welcome();
     menu();
+    x = SCREEN_W/2 - 60;
+    y = SCREEN_H/2 - 20;
     
 	while(!key[KEY_ESC]){
+		
+		
 
 		if(key[KEY_M]){
 			clear_screen();
 			menu();
+			
 		}
 		if (key[KEY_1]){
 			clear_screen();
@@ -51,6 +62,7 @@ int main(void) {
 			
 			chapter = rand_num(1,22);
     		cout << chapter << endl;
+    		
 		}
     	else if(key[KEY_2]){
     		clear_screen();
@@ -84,11 +96,23 @@ int main(void) {
 			while(q <= '9'){
 				clear_screen();
 				display_score(correct, total_questions); //displaying score
+				rest(1000);
 				read_text(1,q); //read the question
-				get_user_ans();
-				get_answer(1,q); //get the answer 
+				//while (!key[KEY_ENTER]){
+				answer = get_answer(1,q); //get the answer
+				user_ans = get_user_ans();
+				
+				if (answer == (char)user_ans){
+					cout << "True" << endl;
+					correct++;
+				}
+				else{
+					cout << "FALSE" << endl;
+				}
+				//}
 				total_questions++;	
 				q++;
+				
 			}
 			clear_screen();
 			check_score(correct,total_questions);
@@ -277,7 +301,7 @@ char get_answer(int num, char question){
 		while(!myfile.eof()){
 			getline (myfile, line);
     		
-    		if (line.length() > 0 && line[0] == question){
+    		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				cout << line << '\n';
 				question++;
 				
@@ -286,8 +310,11 @@ char get_answer(int num, char question){
 					if(line.length()> 0 && line[0] == question){
 						break;
 					}
+					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
+						break; //break the for loop
+					}
 					else{
-						textprintf_ex(screen, font, 5,400, 15,-1, "ANSWER: %s", line.c_str());
+						textprintf_ex(screen, font, 5,350, 15,-1, "ANSWER: %s", line.c_str());
 						cout << line << endl;
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
@@ -302,10 +329,24 @@ char get_answer(int num, char question){
 	
 }
 
-void get_user_ans(){
-	while (!key[KEY_ENTER]){
-        textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);
-    }
+int get_user_ans(){
+	int k;
+	int scancode ,ascii;
+	
+    textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);
+        
+    k = readkey();
+    scancode = (k >> 8);
+    ascii = scancode_to_ascii(scancode);
+    ascii = ascii - 32; //convert to upper letter
+    
+   	textprintf_ex(screen, font, 20, 410, 15, 0,
+            		"Character  = %-6c", (char)ascii);
+    
+    cout << "USER ANSWER: " << (char)ascii << endl;
+    
+    return ascii;
+    
 }
 
 void check_score(int answer, int question){
