@@ -15,7 +15,7 @@ void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
 char get_answer(int num, char question,int display);
-int get_user_ans();
+int get_user_ans(char answer);
 void check_score(int answer, int question);
 int unit_list(int unit);
 int rand_num(int min, int max);
@@ -79,7 +79,7 @@ int main(void) {
 				read_text(chapter,q); //read the question
 				rest(1000);
 				cout << "THIS IS CHAPTER: " << chapter << endl;
-				get_user_ans();
+				get_user_ans(answer);
 				get_answer(chapter,q,display); //get the answer 
 				total_questions++;	
 				q++;
@@ -98,10 +98,12 @@ int main(void) {
 				clear_screen();
 				display_score(correct, total_questions); //displaying score
 				rest(1000);
+				
 				read_text(1,q); //read the question
-				//while (!key[KEY_ENTER]){
+				
 				answer = get_answer(1,q,0); //get the answer
-				user_ans = get_user_ans();
+				user_ans = get_user_ans(answer);
+				
 				
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
@@ -114,7 +116,7 @@ int main(void) {
 					textout_ex(screen, font, "WRONG!!!", 5, 460, 10, -1); 
 					
 				}
-				//}
+				
 				rest(1000);
 				total_questions++;	
 				q++;
@@ -261,8 +263,9 @@ void read_text(int num,char question){
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
-    		cout << "****"<<question << endl;
-    		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
+    		//cout << "****"<<question << endl;
+    		
+			if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				cout << line << '\n';
 				question++;
 				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str());
@@ -337,21 +340,25 @@ char get_answer(int num, char question, int display){
 	
 }
 
-int get_user_ans(){
+int get_user_ans(char answer){
 	int k;
 	int scancode ,ascii;
-	
-    textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);
-        
-    k = readkey();
+	textout_ex(screen, font, "Enter your answer: ", 5, 400, 10, -1);	
+    
+    while(!(key[KEY_A] || key[KEY_B] || key[KEY_C] || key[KEY_D])) {
+    	k = readkey();
     scancode = (k >> 8);
     ascii = scancode_to_ascii(scancode);
+    cout << "USER ANSWER: " << (char)ascii << endl; 
     ascii = ascii - 32; //convert to upper letter
     
    	textprintf_ex(screen, font, 50, 410, 15, 0,
             		"%-6c", (char)ascii);
     
-    cout << "USER ANSWER: " << (char)ascii << endl;
+    
+    	
+	}
+    
     
     return ascii;
     
