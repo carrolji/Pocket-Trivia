@@ -293,7 +293,7 @@ void read_text(int num,char question){
 	char filename [100];
 	snprintf (filename, sizeof filename, "chp%d.txt", num);
 	myfile.open(filename);
-	//myfile.open("chp" + std::to_string(num)+ ".txt");
+	
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
@@ -305,9 +305,9 @@ void read_text(int num,char question){
     		//cout << "****"<<question << endl;
     		
 			if (line.length() > 0 && (line[0] == question || line[1] == question) ){
-				cout << line << '\n';
+				cout <<line << '\n';
 				question++;
-				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str());
+				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str()); //printing questions
 				
 				for(int n=1;n <= 5;n++){
 					getline (myfile, line);
@@ -319,8 +319,7 @@ void read_text(int num,char question){
 						break; //break the for loop
 					}
 					else{
-						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str());
-						//cout << "YOOOOOO: " << line[0] << endl;
+						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str()); //printing the choices
 						cout << line << endl;
 					}
 				}
@@ -350,8 +349,9 @@ char get_answer(int num, char question, int display){
 			getline (myfile, line);
     		
     		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
-				cout << line << '\n';
 				question++;
+				
+				cout << "get answer function: " << line << endl;
 				
 				for(int n=1;n <=5;n++){
 					getline (myfile, line);
@@ -361,11 +361,13 @@ char get_answer(int num, char question, int display){
 					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
 						break; //break the for loop
 					}
+					if(line.length() ==0){
+						break;
+					}
 					else{
 						if(display == 1){
 							textprintf_ex(screen, font, 5,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
-						cout << line << endl;
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
 					}
@@ -386,13 +388,13 @@ int get_user_ans(char answer){
     
     while(!(key[KEY_A] || key[KEY_B] || key[KEY_C] || key[KEY_D])) {
     	k = readkey();
-    scancode = (k >> 8);
-    ascii = scancode_to_ascii(scancode);
-    cout << "USER ANSWER: " << (char)ascii << endl; 
-    ascii = ascii - 32; //convert to upper letter
+    	scancode = (k >> 8);
+    	ascii = scancode_to_ascii(scancode);
+    	cout << "USER ANSWER: " << (char)ascii << endl; 
+    	ascii = ascii - 32; //convert to upper letter
     
-   	textprintf_ex(screen, font, 200, 350, 15, 0,
-            		"%c", (char)ascii);
+   		textprintf_ex(screen, font, 200, 350, 15, 0,
+            			"%c", (char)ascii);
     
     
 	}
