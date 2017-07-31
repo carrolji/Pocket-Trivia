@@ -34,7 +34,6 @@ int main(void) {
 	int q = 0;
 	int unit;
 	
-	
 	//initialize program
 	allegro_init();  
 	install_keyboard(); 
@@ -420,7 +419,7 @@ char get_answer(int num, int quest, bool display){
 						break;
 					}
 					else{
-						if(display == true){
+						if(display == true && (line[0] == 'C' || line[0] == 'A'|| line[0] == 'B'|| line[0] == 'D')){
 							textprintf_ex(screen, font, 5,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						answer = line[0];
@@ -446,9 +445,6 @@ int get_user_ans(char answer){
     	scancode = (k >> 8);
     	ascii = scancode_to_ascii(scancode);
     	cout << "USER ANSWER: " << (char)ascii << endl; 
-    	cout << "k: " << k << endl; 
-    	cout << "scancode: " << scancode << endl; 
-    	cout << "ascii: " << ascii << endl; 
     	ascii = ascii - 32; //convert to upper letter
     
    		textprintf_ex(screen, font, 200, 350, 15, 0,
@@ -463,18 +459,18 @@ int get_user_ans(char answer){
 
 void check_score(int answer, int question){
 	question--;
-	float total_score = (float)answer/ (float)question;
-	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %f", total_score);
+	int total_score = ((float)answer/ (float)question)*100;
+	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %d %%", total_score);
 	if(total_score==1){
 		textout_ex(screen, font, "WOW! Perfect score! Congratulations!", 5, 90, 10, -1);
 	}
-	else if(total_score>0.8){
+	else if(total_score>80){
 		textout_ex(screen, font, "Great job!", 5, 90, 10, -1);
 	}
-	else if(total_score>0.5){
+	else if(total_score>50){
 		textout_ex(screen, font, "Well done!", 5, 90, 10, -1);
 	}
-	else if(total_score==0.5){
+	else if(total_score==50){
 		textout_ex(screen, font, "You passed!", 5, 90, 10, -1);
 	}
 	else{

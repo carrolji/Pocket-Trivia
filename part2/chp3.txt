@@ -5,8 +5,7 @@ C.	Polygon D.	Pixel
 A.	Captain Ron Teague B.	Corporate Resource Training C.	Cathode Ray Tube D.	Common Relativistic Torch
 3. What describes a function that draws a simple geometric shape, such as a point, line, rectangle, or circle?
 A.	putpixel B.	Graphics Primitive C.	triangle D.	polygon
-4. How
-many polygons does the typical 3D accelerator chip process at a time?
+4. How many polygons does the typical 3D accelerator chip process at a time?
 A.	16 B. 8 C. 1 D.	256
 5. What is comprised of three small streams of electrons of varying shades of red, green, and blue?
 A.	Superstring B.	Quantum particle C.	Electron gun D.	Pixel
