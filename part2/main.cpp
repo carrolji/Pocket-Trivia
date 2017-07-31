@@ -11,7 +11,7 @@ void menu();
 void clear_screen();
 void getinput();
 int get_unit();
-void get_chapter();
+int get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,char question);
 char get_answer(int num, char question,int display);
@@ -20,7 +20,7 @@ void check_score(int answer, int question);
 int unit_list(int unit);
 int rand_num(int min, int max);
 
-
+int chapter;
 int main(void) {
 	int k,x,y;
 	int user_ans;
@@ -30,7 +30,7 @@ int main(void) {
 	int correct = 0;
 	int total_questions = 1;
 	char q = '0';
-	int chapter;
+//	int chapter;
 	int display = 0;
 	int unit;
 	
@@ -102,8 +102,8 @@ int main(void) {
 		}
     	else if(key[KEY_3]){
     		clear_screen();
-			get_chapter();
-			rest(2000);
+			chapter = get_chapter();
+			//rest(2000);
 			
 			while(q <= '9'){
 				clear_screen();
@@ -112,9 +112,9 @@ int main(void) {
 				//display score
 				display_score(correct, total_questions);
 				
-				read_text(2,q); //read the question
+				read_text(chapter,q); //read the question
 				
-				answer = get_answer(2,q,0); //get the answer
+				answer = get_answer(chapter,q,0); //get the answer
 				user_ans = get_user_ans(answer);
 				
 				
@@ -126,7 +126,7 @@ int main(void) {
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
-					get_answer(2,q,1);
+					get_answer(chapter,q,1);
 				}
 				rest(2000);
 				total_questions++;	
@@ -260,21 +260,44 @@ int unit_list(int unit){
 	return chapter;
 	
 }
-void get_chapter(){
+int get_chapter(){
 	//Print out chapter list
 	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
     textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-	for(int n=1; n<=22;n++){
-    			
-    	if(n>=12){
-   			textprintf_ex(screen, font, SCREEN_W/2,(n*40)-440, 15,-1, "Chapter %d", n);
-  			cout << "value of a: " << n << endl;
+
+	while(!key[KEY_ENTER]){
+    	if (key[KEY_1]){
+    		chapter =1;
 		}
-		else{
-			textprintf_ex(screen, font, 20,40*n, 15,-1, "Chapter %d", n);
+		else if (key[KEY_2]){
+    		chapter =2;
 		}
-    			
-	}
+		else if (key[KEY_3]){
+    		chapter =3;
+		}
+		else if (key[KEY_4]){
+			chapter =4;
+		}
+		else if (key[KEY_5]){ 	
+			chapter =5;
+		}
+		else if (key[KEY_6]){
+  			chapter =6;
+		}
+		else if (key[KEY_7]){
+  			chapter =7;
+		}
+		else if (key[KEY_8]){
+  			chapter =8;
+		}
+		else if (key[KEY_9]){
+  			chapter =9;
+		}
+		textprintf_ex(screen, font, 200, 50, 15, 0,
+            		"CHAPTER: %d", chapter);
+				
+			};
+	return chapter;
 }
 
 void display_score(int correct,int total_questions){
