@@ -307,6 +307,7 @@ char * get_chapter(char *str_to, int size){
        }
        
     	return str_to;
+    //taken from: https://wiki.allegro.cc/index.php?title=Reading_a_string_from_the_keyboard
 }	
 
 
