@@ -167,18 +167,18 @@ int main(void) {
 				cout << "ARRAY" << num[i] << endl;
 				
 			//////////////////RANDOM NUMBER GENERATED //////////////////
-			int z=0;
+			
 			while(q <= 9){
 				clear_screen();					
 				rest(1000);
 			
 				//display score
 				display_score(correct, total_questions);
-				cout <<"YARRRRRRRRRRRRRRRRR " << num[z] << endl;
+				cout <<"YARRRRRRRRRRRRRRRRR " << num[q] << endl;
 				
-				read_text(chapter,q); //read the question
+				read_text(chapter,num[q]); //read the question
 				
-				answer = get_answer(chapter,q,0); //get the answer
+				answer = get_answer(chapter,num[q],0); //get the answer
 				user_ans = get_user_ans(answer);
 				
 				
@@ -195,7 +195,6 @@ int main(void) {
 				rest(2000);
 				total_questions++;	
 				q++;
-				z++;
 			}
 			clear_screen();
 			check_score(correct,total_questions);
@@ -375,8 +374,7 @@ void display_score(int correct,int total_questions){
 }
 
 void read_text(int num,int quest){
-	cout << "INTEGERRRR" << quest << endl;
-	char question = '0'+quest;
+	char question = '0'+quest; //convert int to char
 	
 	ifstream myfile;
 	string line;
