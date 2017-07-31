@@ -119,11 +119,11 @@ int main(void) {
     		clear(screen);
     		display_score(correct, total_questions);
     		unit = get_unit();
-    		chapter = unit_list(unit);
     		
     		while(q <= 9){
 				clear(screen);
 				rest(1000);
+    			chapter = unit_list(unit);
 				
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
