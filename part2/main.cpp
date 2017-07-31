@@ -90,7 +90,7 @@ int main(void) {
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
-					get_answer(1,q,1);
+					get_answer(chapter,q,1);
 				}
 				rest(2000);
 				total_questions++;	
@@ -108,36 +108,33 @@ int main(void) {
 			while(q <= '9'){
 				clear_screen();
 				rest(1000);
+				
 				//display score
 				display_score(correct, total_questions);
 				
+				read_text(2,q); //read the question
 				
-				read_text(1,q); //read the question
-				
-				answer = get_answer(1,q,0); //get the answer
+				answer = get_answer(2,q,0); //get the answer
 				user_ans = get_user_ans(answer);
 				
 				
 				if (answer == (char)user_ans){
-					cout << "True" << endl;
+					cout << "Correct" << endl;
 					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
-					get_answer(1,q,1);
+					get_answer(2,q,1);
 				}
 				rest(2000);
 				total_questions++;	
 				q++;
-				
 			}
 			clear_screen();
 			check_score(correct,total_questions);
 		}
-		
-
 		
 	}; 
 	allegro_exit(); 
@@ -302,7 +299,6 @@ void read_text(int num,char question){
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
-    		//cout << "****"<<question << endl;
     		
 			if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				cout <<line << '\n';
@@ -351,8 +347,6 @@ char get_answer(int num, char question, int display){
     		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				question++;
 				
-				cout << "get answer function: " << line << endl;
-				
 				for(int n=1;n <=5;n++){
 					getline (myfile, line);
 					if(line.length()> 0 && line[0] == question){
@@ -361,7 +355,7 @@ char get_answer(int num, char question, int display){
 					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
 						break; //break the for loop
 					}
-					if(line.length() ==0){
+					if(line.length() ==0){ //ignore blank spaces
 						break;
 					}
 					else{
