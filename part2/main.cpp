@@ -8,7 +8,6 @@ using namespace std;
 
 void welcome();
 void menu();
-void clear_screen();
 void getinput();
 int get_unit();
 void get_chapter();
@@ -80,7 +79,9 @@ int main(void) {
 		return 1;
 	} 
     welcome();
+    //rest(1000);
     menu();
+    
     
     //////////////////RANDOM NUMBER GENERATED //////////////////
     		
@@ -109,7 +110,7 @@ int main(void) {
 	while(!key[KEY_ESC]){
 
 		if (key[KEY_1]){
-			clear_screen();
+			clear(screen);
 			display_score(correct, total_questions);
 			
 			chapter = rand_num(1,22);
@@ -123,13 +124,13 @@ int main(void) {
 		}
     	else if(key[KEY_2]){
     		
-    		clear_screen();
+    		clear(screen);
     		display_score(correct, total_questions);
     		unit = get_unit();
     		chapter = unit_list(unit);
     		
     		while(q <= 9){
-				clear_screen();
+				clear(screen);
 				rest(1000);
 				
 				display_score(correct, total_questions); //displaying score
@@ -154,12 +155,12 @@ int main(void) {
 				total_questions++;	
 				q++;
 			}
-			clear_screen();
+			clear(screen);
 			check_score(correct,total_questions);
     			
 		}
     	else if(key[KEY_3]){
-    		clear_screen();
+    		clear(screen);
     		//get_chapter();
     		rest(1000);
 			
@@ -167,7 +168,7 @@ int main(void) {
     		cout << "USER INPUT: " <<  chapter << endl;
     		
 			while(q <= 9){
-				clear_screen();					
+				clear(screen);					
 				rest(1000);
 			
 				//display score
@@ -194,7 +195,7 @@ int main(void) {
 				total_questions++;	
 				q++;
 			}
-			clear_screen();
+			clear(screen);
 			check_score(correct,total_questions);
 		}
 		
@@ -214,7 +215,7 @@ void welcome(){
     	textout_ex(screen, font, "Enter to continue...", 5, 50, 10, -1);
 	};
 	
-    clear_screen();
+    clear(screen);
 }
 
 void menu()
@@ -226,21 +227,17 @@ void menu()
      
  }
 
-void clear_screen(){
-	//Clear the game screen by filling with black rectangle
-	rectfill(screen,0,0,640,480,0);
-}
 
 void getinput(){
 	//Get choice from the user in the menu mode
 	if (key[KEY_1])
-		clear_screen();
+		clear(screen);
     else if(key[KEY_2]){
-    	clear_screen();
+    	clear(screen);
     	get_unit();
 	}
     else if(key[KEY_3]){
-    	clear_screen();
+    	clear(screen);
     	get_chapter();	
 	}
 }
