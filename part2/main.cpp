@@ -48,9 +48,7 @@ int main(void) {
 		return 1;
 	} 
     welcome();
-    //rest(1000);
     menu();
-    
     
     //////////////////RANDOM NUMBER GENERATED //////////////////
     		
@@ -82,10 +80,37 @@ int main(void) {
 		if (key[KEY_1]){
 			clear(screen);
 			display_score(correct, total_questions);
-			
-			chapter = rand_num(1,22);
-    		cout << chapter << endl;
     		
+    		while(q <= 9){
+    			chapter = rand_num(1,22);
+    			cout << "THIS IS CHAPTER: " << chapter << endl;
+    			
+				clear(screen);
+				rest(1000);
+				textprintf_ex(screen, font, 5,5, 15,-1, "CHAPTER: %d", chapter);
+				display_score(correct, total_questions); //displaying score
+				read_text(chapter,num[q]); //read the question
+				
+				answer = get_answer(chapter,num[q],false); //get the answer
+				user_ans = get_user_ans(answer);
+				
+				
+				if (answer == (char)user_ans){
+					cout << "True" << endl;
+					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
+					correct++;
+				}
+				else{
+					cout << "FALSE" << endl;
+					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					get_answer(chapter,num[q],true);
+				}
+				rest(2000);
+				total_questions++;	
+				q++;
+			}
+			clear(screen);
+			check_score(correct,total_questions);
 			
 					    		
 		}
@@ -102,7 +127,7 @@ int main(void) {
 				
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
-				
+				textprintf_ex(screen, font, 5,5, 15,-1, "CHAPTER: %d", chapter);
 				cout << "THIS IS CHAPTER: " << chapter << endl;
 				answer = get_answer(chapter,num[q],false); //get the answer
 				user_ans = get_user_ans(answer);
@@ -174,7 +199,7 @@ int main(void) {
 	allegro_exit(); 
 	return 0;
 } 
-END_OF_MAIN()
+END_OF_MAIN();
 
 void welcome(){
 	while (!key[KEY_ENTER]){
