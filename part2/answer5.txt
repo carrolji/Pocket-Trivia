@@ -1,0 +1,20 @@
+1. Which function is used to initialize the keyboard handler? 
+B. install_keyboard
+2. What does ANSI stand for? 
+C. American National Standards Institute
+3. What is the name of the array containing keyboard scan codes? 
+A. key
+4. Where is the real stargate located? 
+C. Colorado Springs, Colorado
+5. Which function provides buffered keyboard input? 
+C. readkey
+6. Which function is used to initialize the mouse handler? 
+A. install_mouse
+7. Which values or functions are used to read the mouse position? 
+A. mouse_x and mouse_y
+8. Which function is used to read the mouse x and y mickeys for relative motion?
+D. get_mouse_mickeys 
+9. What is the name of the main JOYSTICK_INFO array?
+B. joy 
+10. Which struct contains joystick button data?
+C. JOYSTICK_BUTTON_INFO

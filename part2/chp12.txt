@@ -13,7 +13,7 @@ A.	By using a map editor B.	By storing level data as a const array C.	By generat
 7. What type of object comprises a typical tile map?
 A. Strings B.	Binary data C. Numbers D. Pointers
 8. What was the size of the virtual background in the GameWorld program?
-A.	800 􏰀 800 B.	8,000 􏰀 8,000 C.	1,000 􏰀 2,000 D. 32,000􏰀32,000
+A.	800 x 800 B.	8,000 x 8,000 C.	1,000 x 2,000 D. 32,000x32,000
 9. How many virtual backgrounds are used in the new version of Tank War?
 A. 0 B. 1 C. 2 D. 3
 10. How many scrolling windows are used in the new Tank War?

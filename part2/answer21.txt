@@ -1,0 +1,19 @@
+1. What library did we use in this chapter to work with multi-threading? 
+B. pthread
+2. Which company maintains the multi-threading library for Windows systems used in this chapter?
+A. Red Hat 
+3. Which function will terminate a thread?
+C. pthread_exit 4. What type of parameter does a thread callback function require?
+B. void *data 5. What is the most common method of keeping a thread running inside a
+thread callback function? 
+D. while loop
+6. What is a process that runs within the memory space of a single program but is executed separately from that program?
+C. Thread
+7. What helps protect data by locking it inside a single thread, preventing that data from being used by another thread until it is unlocked?
+A. Mutex
+8. What does pthread stand for? 
+C. POSIX Thread
+9. What is the name of the function used to create a new thread? 
+B. pthread_create
+10. What is the name of the function that locks a mutex? 
+D. pthread_mutex_lock

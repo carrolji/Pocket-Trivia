@@ -1,0 +1,20 @@
+1. What is the term given to a small image that is moved around on the screen? 
+B. Sprite
+2. Which function draws a sprite? 
+A. draw_sprite
+3. What is the term for drawing all but a certain color of pixel from one bitmap to another?
+C. Transparency 
+4. Which function draws a scaled sprite?
+A. stretch_sprite 
+5. Which function draws a vertically flipped sprite?
+B. draw_sprite_v_flip 
+6. Which function draws a rotated sprite?
+D. rotate_sprite
+7. Which function draws a sprite with both rotation and scaling?
+B. rotate_scaled_sprite 
+8. What function draws a pivoted sprite?
+C. pivot_sprite 
+9. Which function draws a pivoted sprite with scaling and vertical flip?
+A. pivot_scaled_sprite_v_flip 
+10. Which function draws a sprite with translucency (alpha blending)?
+B. draw_trans_sprite

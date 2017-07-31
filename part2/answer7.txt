@@ -1,0 +1,20 @@
+1. What does ‘‘blit’’ stand for? 
+B. Bit-block transfer
+2. What is a DHD? 
+C. Dial home device
+3. How many pixels are there in an 800 􏰀 600 screen? 
+A. 480,000
+4. What is the name of the object used to hold a bitmap in memory? 
+D. BITMAP
+5. Allegorically speaking, why is it important to destroy bitmaps after you’re done using them?
+C. Because the trash will pile up over time.
+6. Which Allegro function has the potential to create a black hole if used improperly?
+A. acquire_bitmap 
+7. What types of graphics files are supported by Allegro?
+B. BMP, PCX, LBM, and TGA 
+8. What function is used to draw a scaled bitmap?
+B. stretch_blit 
+9. Why would you want to lock the screen while drawing on it?
+A. If it’s not locked, Allegro will lock and unlock the screen for every draw. 
+10. What is the name of the game you’ve been developing in this book?
+D. Tank War

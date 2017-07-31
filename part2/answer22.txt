@@ -1,0 +1,20 @@
+1. What is the first step you must take before attempting to get your game published?
+A. Evaluate the game.
+2. What is the most important question to consider in a game before seeking a publisher?
+C. Is it graphically attractive?
+3. What is the second most important aspect of a game?
+B. Sound
+4. What is an important factor of gameplay, in the sense of a beginning, middle, and ending, that must be considered?
+D. Continuity
+5. What adjective best describes a best-selling game? 
+D. Addictive
+6. What is an NDA? 
+C. Non-Disclosure Agreement
+7. What is a software bug? 
+A. An error in the source code
+8. What term describes a significant date in the development process? 
+B. Milestone
+9. Who created the game Smugglers 2? 
+A. Niels Bauer
+10. For whom should you create a game for the purpose of entertainment? 
+A. Yourself

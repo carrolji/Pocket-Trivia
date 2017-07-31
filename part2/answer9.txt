@@ -1,0 +1,21 @@
+1. Which function draws a standard sprite? 
+C. draw_sprite
+2. What is a frame in the context of sprite animation? 
+A. A single image in the animation sequence
+3. What is the purpose of a sprite handler?
+A. Toprovideaconsistentwaytoanimateandmanipulatemanyspriteson the screen
+4. What is a struct element? 
+D. A variable in a structure
+5. Which term describes a single frame of an animation sequence stored in an image file?
+B. Tile 
+6. Which Allegro function is used frequently to erase a sprite?
+A. rectfill 
+7. Which term describes a reusable activity for a sprite that is important in a
+game? 
+D. Behavior
+8. What is the name of the new function that draws an animation frame to the screen?
+B. drawframe
+9. Which term best describes an image filled with rows and columns of small sprite images?
+C. sprite sheet
+10. How does a sprite struct improve the source code of a game?
+A. Reduces global variable use
