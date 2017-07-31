@@ -11,16 +11,51 @@ void menu();
 void clear_screen();
 void getinput();
 int get_unit();
-int get_chapter();
+void get_chapter();
 void display_score(int correct, int total_questions);
-void read_text(int chp_num,char question);
-char get_answer(int num, char question,int display);
+void read_text(int chp_num,int question);
+char get_answer(int num, int question,int display);
 int get_user_ans(char answer);
-void check_score(int answer, int question);
+void check_score(int answer, int quest);
 int unit_list(int unit);
 int rand_num(int min, int max);
+int *complete_rand();
+
+/*
+char * read_string(char *str_to, int size) {
+       int cur_pos = 0; // position of caret
+       int the_key = 0;
+       int i;
+       for (i = 0; i < size; i++)
+               str_to[i] = '\0'; // 'clean' the string
+
+       while (the_key>>8 != KEY_ENTER)
+       {
+               the_key = readkey();
+               if ((the_key & 0xff) >= ' ') // get only valid chars
+               {
+                       str_to[cur_pos] = the_key & 0xff;
+                       cur_pos++;
+                       if (cur_pos > size-2) cur_pos = size-2;
+               }
+               if (the_key >> 8 == KEY_BACKSPACE)
+               {
+                       str_to[cur_pos] = '\0'; // chop the string
+                       cur_pos --;
+                       if (cur_pos < 0) cur_pos = 0;
+               }
+               // lame redraw (use double buffer, whatever)
+               clear(screen);
+               textout(screen,font, str_to, 0,0, makecol(255,255,255));
+               //cout << str_to << endl;
+       }
+    	return str_to;
+}*/
 
 int chapter;
+char my_str[40];
+char *test;
+
 int main(void) {
 	int k,x,y;
 	int user_ans;
@@ -29,10 +64,10 @@ int main(void) {
 	int ret;
 	int correct = 0;
 	int total_questions = 1;
-	char q = '0';
-//	int chapter;
+	int q = 0;
 	int display = 0;
 	int unit;
+	
 	
 	//initialize program
 	allegro_init();  
@@ -52,11 +87,6 @@ int main(void) {
     
 	while(!key[KEY_ESC]){
 
-		if(key[KEY_M]){
-			clear_screen();
-			menu();
-			
-		}
 		if (key[KEY_1]){
 			clear_screen();
 			display_score(correct, total_questions);
@@ -64,13 +94,19 @@ int main(void) {
 			chapter = rand_num(1,22);
     		cout << chapter << endl;
     		
+    		//test = read_string(my_str, 40);
+			//cout << "USER INPUT: " <<  test << endl;
+			int *a = complete_rand();
+			cout << "TESTTT" << a[0] << endl;
+			break;
+					    		
 		}
     	else if(key[KEY_2]){
     		
     		clear_screen();
     		display_score(correct, total_questions);
     		unit = get_unit();
-    		chapter = unit_list(unit); 
+    		chapter = unit_list(unit);
     		
     		while(q <= '9'){
 				clear_screen();
@@ -102,15 +138,43 @@ int main(void) {
 		}
     	else if(key[KEY_3]){
     		clear_screen();
-			chapter = get_chapter();
-			//rest(2000);
+    		//get_chapter();
+    		rest(1000);
 			
-			while(q <= '9'){
-				clear_screen();
-				rest(1000);
+			chapter = 1;
+    		cout << "USER INPUT: " <<  chapter << endl;
+    		
+    		//////////////////RANDOM NUMBER GENERATED //////////////////
+    		
+			int i , r , temp;
+			int num[10];
 				
+			//Fill array with desired numbers
+			for( temp=0,i=0; temp<10; i++,temp++ )
+				num[temp] = i;
+		
+			//Fisher–Yates shuffle algorithm
+			for( i=9; i>0; i-- ){
+			    r = rand()%i;   //pop random number
+				        //swaping using temp
+				temp = num[i];
+				num[i] = num[r];
+				num[r] = temp;
+			}
+				
+			//print the array
+			for( i=0; i<10; i++ )
+				cout << "ARRAY" << num[i] << endl;
+				
+			//////////////////RANDOM NUMBER GENERATED //////////////////
+			int z=0;
+			while(q <= 9){
+				clear_screen();					
+				rest(1000);
+			
 				//display score
 				display_score(correct, total_questions);
+				cout <<"YARRRRRRRRRRRRRRRRR " << num[z] << endl;
 				
 				read_text(chapter,q); //read the question
 				
@@ -131,6 +195,7 @@ int main(void) {
 				rest(2000);
 				total_questions++;	
 				q++;
+				z++;
 			}
 			clear_screen();
 			check_score(correct,total_questions);
@@ -260,12 +325,15 @@ int unit_list(int unit){
 	return chapter;
 	
 }
-int get_chapter(){
+void get_chapter(){
 	//Print out chapter list
 	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
     textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-
-	while(!key[KEY_ENTER]){
+    //test = read_string(my_str, 40);
+	//cout << "USER INPUT: " <<  test << endl;
+	
+	
+/*	while(!key[KEY_ENTER]){
     	if (key[KEY_1]){
     		chapter =1;
 		}
@@ -297,7 +365,7 @@ int get_chapter(){
             		"CHAPTER: %d", chapter);
 				
 			};
-	return chapter;
+	return chapter;*/
 }
 
 void display_score(int correct,int total_questions){
@@ -306,7 +374,9 @@ void display_score(int correct,int total_questions){
                           "Score %d : %d", correct,total_questions);
 }
 
-void read_text(int num,char question){
+void read_text(int num,int quest){
+	cout << "INTEGERRRR" << quest << endl;
+	char question = '0'+quest;
 	
 	ifstream myfile;
 	string line;
@@ -317,7 +387,7 @@ void read_text(int num,char question){
 	if(!myfile) {
    	 	cout << "Cannot open input file.\n";
   	}
-  	//char question = '9'; //must pass the parameter!!
+  	
   	int lines_read = 0;
 	if (myfile.is_open()){
 		while(!myfile.eof()){
@@ -349,7 +419,8 @@ void read_text(int num,char question){
 	
 }
 
-char get_answer(int num, char question, int display){
+char get_answer(int num, int quest, int display){
+	char question = '0'+quest;
 	
 	ifstream myfile;
 	string line;
@@ -408,6 +479,9 @@ int get_user_ans(char answer){
     	scancode = (k >> 8);
     	ascii = scancode_to_ascii(scancode);
     	cout << "USER ANSWER: " << (char)ascii << endl; 
+    	cout << "k: " << k << endl; 
+    	cout << "scancode: " << scancode << endl; 
+    	cout << "ascii: " << ascii << endl; 
     	ascii = ascii - 32; //convert to upper letter
     
    		textprintf_ex(screen, font, 200, 350, 15, 0,
@@ -442,6 +516,62 @@ void check_score(int answer, int question){
 	textout_ex(screen, font, "Enter m to go back to the main menu", 5, 100, 10, -1);
 	textout_ex(screen, font, "Esc to quit the game", 5, 110, 10, -1);
 	
+}
+
+int *complete_rand(){
+	int i , r , temp;
+	int num[10];
+		
+	//Fill array with desired numbers
+	for( temp=0,i=0; temp<10; i++,temp++ )
+		num[temp] = i;
+		
+	srand( time(NULL) );  //seed rand()
+
+		    //Fisher–Yates shuffle algorithm
+	for( i=9; i>0; i-- ){
+	    r = rand()%i;   //pop random number
+		        //swaping using temp
+		temp = num[i];
+		num[i] = num[r];
+		num[r] = temp;
+	}
+		
+		    /*Random Numbers b/w N1-N2 are stored in Array num*/
+		
+		    //print the array
+	for( i=0; i<10; i++ )
+		cout << "ARRAY" << num[i] << endl;					        		    
+	
+	//taken: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html
+/*	int value[10]; //array to store the random numbers in
+	
+	srand(time(NULL)); //always seed your RNG before using it
+
+	//generate random numbers:
+	for (int i=0;i<10;i++)
+	{
+	    bool check; //variable to check or number is already used
+	    int n; //variable to store the number in
+	    do
+	    {
+	    	n=rand_num(0,9);
+	    	//check or number is already used:
+	    	check=true;
+	    	for (int j=0;j<i;j++){
+	    		if (n == value[j]) //if number is already used
+	        	{
+	            	check=false; //set check to false
+	            	break; //no need to check the other elements of value[]
+	        	}	
+			}
+	        	
+	    } while (!check); //loop until new, unique number is found
+	    value[i]=n; //store the generated number in the array
+	    cout << "RANDOM NUMBER : " <<value[i] << endl;
+	}*/
+	
+	return num;
 }
 
 
