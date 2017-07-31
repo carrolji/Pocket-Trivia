@@ -10,7 +10,7 @@ void welcome();
 void menu();
 void getinput();
 int get_unit();
-void get_chapter();
+char * get_chapter(char *str_to, int size);
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,int question);
 char get_answer(int num, int question,bool display);
@@ -18,37 +18,6 @@ int get_user_ans(char answer);
 void check_score(int answer, int quest);
 int unit_list(int unit);
 int rand_num(int min, int max);
-
-/*
-char * read_string(char *str_to, int size) {
-       int cur_pos = 0; // position of caret
-       int the_key = 0;
-       int i;
-       for (i = 0; i < size; i++)
-               str_to[i] = '\0'; // 'clean' the string
-
-       while (the_key>>8 != KEY_ENTER)
-       {
-               the_key = readkey();
-               if ((the_key & 0xff) >= ' ') // get only valid chars
-               {
-                       str_to[cur_pos] = the_key & 0xff;
-                       cur_pos++;
-                       if (cur_pos > size-2) cur_pos = size-2;
-               }
-               if (the_key >> 8 == KEY_BACKSPACE)
-               {
-                       str_to[cur_pos] = '\0'; // chop the string
-                       cur_pos --;
-                       if (cur_pos < 0) cur_pos = 0;
-               }
-               // lame redraw (use double buffer, whatever)
-               clear(screen);
-               textout(screen,font, str_to, 0,0, makecol(255,255,255));
-               //cout << str_to << endl;
-       }
-    	return str_to;
-}*/
 
 int chapter;
 char my_str[40];
@@ -106,7 +75,8 @@ int main(void) {
 		cout << "ARRAY" << num[i] << endl;
 	
 	//taken from: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html		
-	//////////////////RANDOM NUMBER GENERATED //////////////////			
+	//////////////////RANDOM NUMBER GENERATED //////////////////	
+			
 	while(!key[KEY_ESC]){
 
 		if (key[KEY_1]){
@@ -116,10 +86,7 @@ int main(void) {
 			chapter = rand_num(1,22);
     		cout << chapter << endl;
     		
-    		//test = read_string(my_str, 40);
-			//cout << "USER INPUT: " <<  test << endl;
 			
-			break;
 					    		
 		}
     	else if(key[KEY_2]){
@@ -161,11 +128,15 @@ int main(void) {
 		}
     	else if(key[KEY_3]){
     		clear(screen);
-    		//get_chapter();
     		rest(1000);
 			
-			chapter = 1;
-    		cout << "USER INPUT: " <<  chapter << endl;
+			
+			while(!key[KEY_ENTER]){
+				test = get_chapter(my_str, 40);
+				cout << "USER INPUT: " <<  test << endl;
+				chapter = atoi(test);
+			}
+    		cout << "CHAPTER!!!!" << chapter << endl;
     		
 			while(q <= 9){
 				clear(screen);					
@@ -227,20 +198,6 @@ void menu()
      
  }
 
-
-void getinput(){
-	//Get choice from the user in the menu mode
-	if (key[KEY_1])
-		clear(screen);
-    else if(key[KEY_2]){
-    	clear(screen);
-    	get_unit();
-	}
-    else if(key[KEY_3]){
-    	clear(screen);
-    	get_chapter();	
-	}
-}
 
 int get_unit(){
 	int unit;
@@ -319,48 +276,39 @@ int unit_list(int unit){
 	return chapter;
 	
 }
-void get_chapter(){
-	//Print out chapter list
-	textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
-    textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-    //test = read_string(my_str, 40);
-	//cout << "USER INPUT: " <<  test << endl;
+char * get_chapter(char *str_to, int size){
 	
-	
-/*	while(!key[KEY_ENTER]){
-    	if (key[KEY_1]){
-    		chapter =1;
-		}
-		else if (key[KEY_2]){
-    		chapter =2;
-		}
-		else if (key[KEY_3]){
-    		chapter =3;
-		}
-		else if (key[KEY_4]){
-			chapter =4;
-		}
-		else if (key[KEY_5]){ 	
-			chapter =5;
-		}
-		else if (key[KEY_6]){
-  			chapter =6;
-		}
-		else if (key[KEY_7]){
-  			chapter =7;
-		}
-		else if (key[KEY_8]){
-  			chapter =8;
-		}
-		else if (key[KEY_9]){
-  			chapter =9;
-		}
-		textprintf_ex(screen, font, 200, 50, 15, 0,
-            		"CHAPTER: %d", chapter);
-				
-			};
-	return chapter;*/
-}
+    int cur_pos = 0; // position of caret
+    int the_key = 0;
+    int i;
+    for (i = 0; i < size; i++)           
+		str_to[i] = '\0'; // 'clean' the string
+
+    while (the_key>>8 != KEY_ENTER){
+        the_key = readkey();
+        if ((the_key & 0xff) >= ' ') // get only valid chars
+        {
+            str_to[cur_pos] = the_key & 0xff;
+            cur_pos++;
+            if (cur_pos > size-2) cur_pos = size-2;
+        }
+        if (the_key >> 8 == KEY_BACKSPACE)
+        {
+            str_to[cur_pos] = '\0'; // chop the string
+            cur_pos --;
+            if (cur_pos < 0) cur_pos = 0;
+        }
+        // lame redraw (use double buffer, whatever)
+        clear(screen);
+        textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
+    	textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
+        textout_ex(screen,font, "CHAPTER: ", 200, 50, 10, -1);
+        textout_ex(screen,font, str_to, 270, 50, 10, -1);
+       }
+       
+    	return str_to;
+}	
+
 
 void display_score(int correct,int total_questions){
 	textprintf_right_ex(screen, font, SCREEN_W - 10, 20,
