@@ -14,12 +14,11 @@ int get_unit();
 void get_chapter();
 void display_score(int correct, int total_questions);
 void read_text(int chp_num,int question);
-char get_answer(int num, int question,int display);
+char get_answer(int num, int question,bool display);
 int get_user_ans(char answer);
 void check_score(int answer, int quest);
 int unit_list(int unit);
 int rand_num(int min, int max);
-int *complete_rand();
 
 /*
 char * read_string(char *str_to, int size) {
@@ -57,7 +56,7 @@ char my_str[40];
 char *test;
 
 int main(void) {
-	int k,x,y;
+	int k;
 	int user_ans;
 	char answer;
 	int scancode ,ascii;
@@ -65,7 +64,6 @@ int main(void) {
 	int correct = 0;
 	int total_questions = 1;
 	int q = 0;
-	int display = 0;
 	int unit;
 	
 	
@@ -84,7 +82,30 @@ int main(void) {
     welcome();
     menu();
     
-    
+    //////////////////RANDOM NUMBER GENERATED //////////////////
+    		
+	int i , r , temp;
+	int num[10];
+				
+	//Fill array with desired numbers
+	for( temp=0,i=0; temp<10; i++,temp++ )
+		num[temp] = i;
+		
+	//Fisher–Yates shuffle algorithm
+	for( i=9; i>0; i-- ){
+		r = rand()%i;   //pop random number
+				        //swaping using temp
+		temp = num[i];
+		num[i] = num[r];
+		num[r] = temp;
+	}
+				
+	//print the array
+	for( i=0; i<10; i++ )
+		cout << "ARRAY" << num[i] << endl;
+	
+	//taken from: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html		
+	//////////////////RANDOM NUMBER GENERATED //////////////////			
 	while(!key[KEY_ESC]){
 
 		if (key[KEY_1]){
@@ -96,8 +117,7 @@ int main(void) {
     		
     		//test = read_string(my_str, 40);
 			//cout << "USER INPUT: " <<  test << endl;
-			int *a = complete_rand();
-			cout << "TESTTT" << a[0] << endl;
+			
 			break;
 					    		
 		}
@@ -108,13 +128,15 @@ int main(void) {
     		unit = get_unit();
     		chapter = unit_list(unit);
     		
-    		while(q <= '9'){
+    		while(q <= 9){
 				clear_screen();
-				display_score(correct, total_questions); //displaying score
-				read_text(chapter,q); //read the question
 				rest(1000);
+				
+				display_score(correct, total_questions); //displaying score
+				read_text(chapter,num[q]); //read the question
+				
 				cout << "THIS IS CHAPTER: " << chapter << endl;
-				answer = get_answer(chapter,q,0); //get the answer
+				answer = get_answer(chapter,num[q],false); //get the answer
 				user_ans = get_user_ans(answer);
 				
 				
@@ -126,7 +148,7 @@ int main(void) {
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
-					get_answer(chapter,q,1);
+					get_answer(chapter,num[q],true);
 				}
 				rest(2000);
 				total_questions++;	
@@ -144,30 +166,6 @@ int main(void) {
 			chapter = 1;
     		cout << "USER INPUT: " <<  chapter << endl;
     		
-    		//////////////////RANDOM NUMBER GENERATED //////////////////
-    		
-			int i , r , temp;
-			int num[10];
-				
-			//Fill array with desired numbers
-			for( temp=0,i=0; temp<10; i++,temp++ )
-				num[temp] = i;
-		
-			//Fisher–Yates shuffle algorithm
-			for( i=9; i>0; i-- ){
-			    r = rand()%i;   //pop random number
-				        //swaping using temp
-				temp = num[i];
-				num[i] = num[r];
-				num[r] = temp;
-			}
-				
-			//print the array
-			for( i=0; i<10; i++ )
-				cout << "ARRAY" << num[i] << endl;
-				
-			//////////////////RANDOM NUMBER GENERATED //////////////////
-			
 			while(q <= 9){
 				clear_screen();					
 				rest(1000);
@@ -178,7 +176,7 @@ int main(void) {
 				
 				read_text(chapter,num[q]); //read the question
 				
-				answer = get_answer(chapter,num[q],0); //get the answer
+				answer = get_answer(chapter,num[q],false); //get the answer
 				user_ans = get_user_ans(answer);
 				
 				
@@ -190,7 +188,7 @@ int main(void) {
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
-					get_answer(chapter,q,1);
+					get_answer(chapter,num[q],true);
 				}
 				rest(2000);
 				total_questions++;	
@@ -417,7 +415,7 @@ void read_text(int num,int quest){
 	
 }
 
-char get_answer(int num, int quest, int display){
+char get_answer(int num, int quest, bool display){
 	char question = '0'+quest;
 	
 	ifstream myfile;
@@ -451,7 +449,7 @@ char get_answer(int num, int quest, int display){
 						break;
 					}
 					else{
-						if(display == 1){
+						if(display == true){
 							textprintf_ex(screen, font, 5,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						answer = line[0];
@@ -511,65 +509,8 @@ void check_score(int answer, int question){
 	else{
 		textout_ex(screen, font, "Sorry try again next time", 5, 90, 10, -1);
 	}
-	textout_ex(screen, font, "Enter m to go back to the main menu", 5, 100, 10, -1);
 	textout_ex(screen, font, "Esc to quit the game", 5, 110, 10, -1);
 	
-}
-
-int *complete_rand(){
-	int i , r , temp;
-	int num[10];
-		
-	//Fill array with desired numbers
-	for( temp=0,i=0; temp<10; i++,temp++ )
-		num[temp] = i;
-		
-	srand( time(NULL) );  //seed rand()
-
-		    //Fisher–Yates shuffle algorithm
-	for( i=9; i>0; i-- ){
-	    r = rand()%i;   //pop random number
-		        //swaping using temp
-		temp = num[i];
-		num[i] = num[r];
-		num[r] = temp;
-	}
-		
-		    /*Random Numbers b/w N1-N2 are stored in Array num*/
-		
-		    //print the array
-	for( i=0; i<10; i++ )
-		cout << "ARRAY" << num[i] << endl;					        		    
-	
-	//taken: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html
-/*	int value[10]; //array to store the random numbers in
-	
-	srand(time(NULL)); //always seed your RNG before using it
-
-	//generate random numbers:
-	for (int i=0;i<10;i++)
-	{
-	    bool check; //variable to check or number is already used
-	    int n; //variable to store the number in
-	    do
-	    {
-	    	n=rand_num(0,9);
-	    	//check or number is already used:
-	    	check=true;
-	    	for (int j=0;j<i;j++){
-	    		if (n == value[j]) //if number is already used
-	        	{
-	            	check=false; //set check to false
-	            	break; //no need to check the other elements of value[]
-	        	}	
-			}
-	        	
-	    } while (!check); //loop until new, unique number is found
-	    value[i]=n; //store the generated number in the array
-	    cout << "RANDOM NUMBER : " <<value[i] << endl;
-	}*/
-	
-	return num;
 }
 
 
