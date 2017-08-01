@@ -18,5 +18,6 @@ C. open_fli D. shoo_fli
 A. next_fli_frame B. get_next_frame C. move_frame D. next_fli
 9. What is the name of the variable used to set the timing of FLIC playback?
 A. flic_frames B. playback_timer C. fli_playback D. fli_timer
-10. What is the name of the variable that contains the bitmap of the current FLIC frame?
+10. What is the name of the variable that contains the bitmap of the 
+current FLIC frame?
 A. fli_frame B. fli_bitmap C. fli_image D. current_fli

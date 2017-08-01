@@ -1,8 +1,10 @@
-1. What is the term given to a small image that is moved around on the screen?
+1. What is the term given to a small image that is moved around on the 
+screen?
 A. Bitmap B. Sprite C. Fairy D. Mouse cursor
 2. Which function draws a sprite?
 A. draw_sprite B. show_sprite C. display_sprite D. blit_sprite
-3. What is the term for drawing all but a certain color of pixel from one bitmap to another?
+3. What is the term for drawing all but a certain color of pixel from 
+one bitmap to another?
 A.	Alpha blending B. Translucency C. Transparency D. Telekinesis
 4. Which function draws a scaled sprite?
 A. stretch_sprite B. draw_scaled_sprite C. draw_stretched_sprite D. scale_sprite

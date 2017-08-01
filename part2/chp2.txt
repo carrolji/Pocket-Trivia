@@ -16,9 +16,11 @@ A. 3.0 B. 4.0 C. 5.0 D. 6.0
 A. 6.0 B.	7.0 (2002) C.	7.1 (2003) D.	8.0 (2005)
 7. What distinctive feature of Dev-C++ sets it apart from commercial devel- opment tools?
 A.	Dev-C++ is open-source B.	Dev-C++ is free C.	Dev-C++ is multi-platform D.	All of the above
-8. What is the name of the game programming library featured in this chapter?
+8. What is the name of the game programming library featured in this 
+chapter?
 A. DirectX B. Gnome C. GTK+ D. Allegro
 9. What function must be called before you use the Allegro library?
 A. main() B. byte_me() C. allegro_init() D. lets_get_started()
-10. What statement must be included at the end of main() in an Allegro program?
+10. What statement must be included at the end of main() in an Allegro 
+program?
 A. END_OF_THE_WORLD() B. END_OF_MAIN() C. END_OF_FREEDOM() D. AH_DONUTS()

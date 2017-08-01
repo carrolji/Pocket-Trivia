@@ -4,6 +4,7 @@
 #include <sstream>
 #include<string>
 #include<stdlib.h>
+#include <algorithm> 
 using namespace std;
 
 void welcome();
@@ -374,8 +375,9 @@ void read_text(int num,int quest){
 						break; //break the for loop
 					}
 					else{
+						line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
 						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str()); //printing the choices
-						cout << line << endl;
+						cout << "HELLOOOOO " <<line << endl;
 					}
 				}
 			}

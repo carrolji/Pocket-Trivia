@@ -5,7 +5,8 @@ vertical scroller engine?
 A. ScrollerEngine B. VerticalScroller C. MappyAL D. AllegroScroller
 3. What are the virtual pixel dimensions of the levels in Warbirds Pacifica?
 A.	640 x 480 B.	48,000 x 640 C.	20 x 1,500 D. 640x48,000
-4. What is the name of the level-editing program used to create the first level of Warbirds Pacifica?
+4. What is the name of the level-editing program used to create the first 
+level of Warbirds Pacifica?
 A. Happy B. Mappy C. Snappy D. Frappy
 5. How many tiles comprise a level in Warbirds Pacifica?
 A. 30,000 B. 1,500 C. 48,000 D. 32,768

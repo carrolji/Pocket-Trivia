@@ -13,7 +13,8 @@ A. scankey B. getkey C. readkey D. buffered_input
 A. install_mouse B. instantiate_mouse C. initialize_mouse D. ingratiate_mouse
 7. Which values or functions are used to read the mouse position?
 A. mouse_x and mouse_y B.	get_mouse_x and get_mouse_y C. mousex and mousey D. mouse_position_x and mouse_position_y
-8. Which function is used to read the mouse x and y mickeys for relative motion?
+8. Which function is used to read the mouse x and y mickeys for relative 
+motion?
 A. mickey_mouse B. read_mouse_mickeys C. mouse_mickeys D. get_mouse_mickeys
 9. What is the name of the main JOYSTICK_INFO array?
 A. joysticks B. joy C. sticks D. joystick
