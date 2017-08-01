@@ -366,20 +366,22 @@ void read_text(int num,int quest){
 				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str()); //printing questions
 				
 				for(int n=1;n <= 5;n++){
+								
 					getline (myfile, line);
-					
+						
 					if(line.length()> 0 && line[0] == question){
 						break;
 					}
 					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
 						break; //break the for loop
-					}
+					}						
 					else{
 						line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
-						textprintf_ex(screen, font, 5,90*n, 15,-1, "%s", line.c_str()); //printing the choices
-						cout << "HELLOOOOO " <<line << endl;
+						textprintf_ex(screen, font, 5,100+(n*10), 15,-1, "%s", line.c_str()); //printing the choices
+						cout << line << endl;
 					}
 				}
+				
 			}
 		}
 	}
@@ -463,7 +465,7 @@ void check_score(int answer, int question){
 	question--;
 	int total_score = ((float)answer/ (float)question)*100;
 	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %d %%", total_score);
-	if(total_score==1){
+	if(total_score==100){
 		textout_ex(screen, font, "WOW! Perfect score! Congratulations!", 5, 90, 10, -1);
 	}
 	else if(total_score>80){
