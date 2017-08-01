@@ -5,6 +5,10 @@
 #include<string>
 #include<stdlib.h>
 #include <algorithm> 
+
+#define MODE GFX_AUTODETECT_WINDOWED
+#define WIDTH 640
+#define HEIGHT 480
 using namespace std;
 
 void welcome();
@@ -41,12 +45,31 @@ int main(void) {
 	install_mouse();
     install_timer();
     srand(time(NULL));
-	
+
 	ret = set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
 	if(ret != 0){
 		allegro_message(allegro_error);
 		return 1;
 	} 
+	   
+    //initialize music
+    SAMPLE *samples[5];
+    int panning = 128;
+    int pitch = 1000;
+    int volume = 128;
+    
+    //install a digital sound driver
+    if (install_sound(DIGI_AUTODETECT, MIDI_NONE, "") != 0) 
+    {
+        allegro_message("Error initializing sound system");
+        return 1;
+    }
+    
+    //load the wave file
+    samples[0] = load_sample("clapping.wav");
+    samples[1] = load_sample("correct.wav");
+    samples[2] = load_sample("wrong.wav");
+
     welcome();
     menu();
     
@@ -97,12 +120,14 @@ int main(void) {
 				
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
+					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
-					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					play_sample(samples[2], volume, panning, pitch, FALSE);
+					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1);
 					get_answer(chapter,num[q],true);
 				}
 				rest(2000);
@@ -135,12 +160,14 @@ int main(void) {
 				
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
+					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
-					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					play_sample(samples[2], volume, panning, pitch, FALSE);
+					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1);
 					get_answer(chapter,num[q],true);
 				}
 				rest(2000);
@@ -149,6 +176,8 @@ int main(void) {
 			}
 			clear(screen);
 			check_score(correct,total_questions);
+			//play the sample with looping
+	    	play_sample(samples[0], volume, panning, pitch, TRUE);
     			
 		}
     	else if(key[KEY_3]){
@@ -179,12 +208,14 @@ int main(void) {
 				
 				if (answer == (char)user_ans){
 					cout << "Correct" << endl;
+					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
 					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					play_sample(samples[2], volume, panning, pitch, FALSE);
 					get_answer(chapter,num[q],true);
 				}
 				rest(2000);
@@ -193,8 +224,12 @@ int main(void) {
 			}
 			clear(screen);
 			check_score(correct,total_questions);
+			//play the sample with looping
+	    	play_sample(samples[0], volume, panning, pitch, TRUE);
 		}
 		
+	    
+			
 	}; 
 	allegro_exit(); 
 	return 0;
