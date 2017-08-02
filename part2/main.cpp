@@ -238,12 +238,41 @@ END_OF_MAIN();
 
 void welcome(){
 	while (!key[KEY_ENTER]){
-		textout_ex(screen, font, "Welcome to Pocket Trivia Game", 5, 1, 10, -1); 
-    	textout_ex(screen, font, "The game is to quiz your knowledge based on the textbook ", 5, 10, 10, -1);
-    	textout_ex(screen, font, "Game Programming All in One, 3rd Edition textbook by Jonathan S.Harbour", 5, 20, 10, -1);
-    	textout_ex(screen, font, "Each set of game will present you 10 random multiple-choice questions", 5, 30, 10, -1);
-    	textout_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", 5, 40, 10, -1);	
-    	textout_ex(screen, font, "Enter to continue...", 5, 50, 10, -1);
+		
+		for(int n=3; n<=10 ; n++){
+    		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 10);	
+    		//circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 13);
+    		//circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 11);
+    		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 12); //RED
+    		
+    		//circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 10);	
+    		//circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 13);
+    		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 11);
+    		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 12); //RED
+    		
+		}
+		for(int n=3; n <=7; n++){
+			circlefill(screen, n* 72, (SCREEN_H / 3.5), 5, 11); //BLUE
+			circlefill(screen, n* 60, (SCREEN_H / 3.5), 5, 14); //YELLOW
+			circlefill(screen, n* 55, (SCREEN_H / 3.5), 5, 13); //PINK
+			circlefill(screen, n* 68, (SCREEN_H / 3.5), 5, 13); //PINK TOP
+			circlefill(screen, n* 55, (SCREEN_H / 3.5), 5, 10); //GREEN
+			
+			circlefill(screen, n* 60, (SCREEN_H / 2.5), 5, 14); //YELLOW
+			circlefill(screen, n* 55, (SCREEN_H / 2.5), 5, 13); //PINK
+			circlefill(screen, n* 68, (SCREEN_H / 2.5), 5, 13); //PINK
+			
+			circlefill(screen, n* 55, (SCREEN_H / 2.5), 5, 10); //GREEN
+			circlefill(screen, n* 72, (SCREEN_H / 2.5), 5, 11); //BLUE
+			circlefill(screen, n* 60, (SCREEN_H / 2.5), 5, 14); //YELLOW
+				
+		}
+		textout_centre_ex(screen, font, "Welcome to Pocket Trivia Game",  SCREEN_W / 2, SCREEN_H / 3, 15, -1); 
+    	textout_centre_ex(screen, font, "The game is to quiz your knowledge based on the textbook: ", SCREEN_W / 2, 250, 15, -1);
+    	textout_centre_ex(screen, font, "Game Programming All in One, 3rd Ed. by Jonathan S.Harbour", SCREEN_W / 2, 270, 15, -1);
+    	textout_centre_ex(screen, font, "Each set of game will present you 10 random multiple-choice questions", SCREEN_W / 2, 290, 15, -1);
+    	textout_centre_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", SCREEN_W / 2, 310, 15, -1);	
+    	textout_centre_ex(screen, font, "PRESS HOLD Enter key to continue...", SCREEN_W / 2, 330, 15, -1);
 	};
 	
     clear(screen);
@@ -251,10 +280,10 @@ void welcome(){
 
 void menu()
 {
-    textout_ex(screen, font, "Pick the type of quizes you would like to play:", 5, 10, 10, -1);
-    textout_ex(screen, font, "Enter (1) for entire text", 5, 20, 10, -1);
-    textout_ex(screen, font, "Enter (2) for particular unit", 5, 30, 10, -1);
-    textout_ex(screen, font, "Enter (3) for particular chapter", 5, 40, 10, -1);
+    textout_centre_ex(screen, font, "Pick the type of quizes you would like to play:", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
+    textout_centre_ex(screen, font, "Enter (1) for entire text", SCREEN_W / 2, 200, 15, -1);
+    textout_centre_ex(screen, font, "Enter (2) for particular unit", SCREEN_W / 2, 220, 15, -1);
+    textout_centre_ex(screen, font, "Enter (3) for particular chapter", SCREEN_W / 2, 240, 15, -1);
      
  }
 
