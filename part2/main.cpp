@@ -69,9 +69,14 @@ int main(void) {
     samples[0] = load_sample("clapping.wav");
     samples[1] = load_sample("correct.wav");
     samples[2] = load_sample("wrong.wav");
-
+    samples[3] = load_sample("theme_song.wav");
+	samples[4] = load_sample("select.wav");
+	
+	play_sample(samples[3], volume, panning, pitch, TRUE);
     welcome();
     menu();
+    stop_sample(samples[3]);
+    play_sample(samples[4], volume+100, panning, pitch, FALSE);
     
     //////////////////RANDOM NUMBER GENERATED //////////////////
     		
@@ -95,10 +100,10 @@ int main(void) {
 	//////////////////RANDOM NUMBER GENERATED //////////////////	
 			
 	while(!key[KEY_ESC]){
-
+		
 		if (key[KEY_1]){
+			play_sample(samples[4], volume+100, panning, pitch, FALSE);
 			clear(screen);
-			display_score(correct, total_questions);
     		
     		while(q <= 9){
     			chapter = rand_num(1,22);
@@ -139,10 +144,11 @@ int main(void) {
 					    		
 		}
     	else if(key[KEY_2]){
-    		
+    		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		clear(screen);
-    		display_score(correct, total_questions);
+    		
     		unit = get_unit();
+    		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		
     		while(q <= 9){
 				clear(screen);
@@ -184,8 +190,8 @@ int main(void) {
     			
 		}
     	else if(key[KEY_3]){
+    		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		clear(screen);
-    		rest(1000);
 			
 			while(!key[KEY_ENTER]){
 				test = get_chapter(my_str, 40);
@@ -193,7 +199,7 @@ int main(void) {
 				chapter = atoi(test);
 			}
     		cout << "CHAPTER!!!!" << chapter << endl;
-    		
+    		play_sample(samples[4], volume+100, panning, pitch, FALSE);
 			while(q <= 9){
 				clear(screen);					
 				rest(1000);
@@ -269,7 +275,7 @@ void welcome(){
     	textout_centre_ex(screen, font, "The game is to quiz your knowledge based on the textbook: ", SCREEN_W / 2, 250, 15, -1);
     	textout_centre_ex(screen, font, "Game Programming All in One, 3rd Ed. by Jonathan S.Harbour", SCREEN_W / 2, 270, 15, -1);
     	textout_centre_ex(screen, font, "Each set of game will present you 10 random multiple-choice questions", SCREEN_W / 2, 290, 15, -1);
-    	textout_centre_ex(screen, font, "Choose the correct answer to earn a point by entering a, b, c, or d", SCREEN_W / 2, 310, 15, -1);	
+    	textout_centre_ex(screen, font, "Choose the correct answer to earn a point by entering A, B, C, or D", SCREEN_W / 2, 310, 15, -1);	
     	textout_centre_ex(screen, font, "PRESS HOLD Enter key to continue...", SCREEN_W / 2, 330, 15, -1);
 	};
 	
@@ -278,10 +284,10 @@ void welcome(){
 
 void menu()
 {
-    textout_centre_ex(screen, font, "Pick the type of quizes you would like to play:", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
-    textout_centre_ex(screen, font, "Enter (1) for entire text", SCREEN_W / 2, 200, 15, -1);
-    textout_centre_ex(screen, font, "Enter (2) for particular unit", SCREEN_W / 2, 220, 15, -1);
-    textout_centre_ex(screen, font, "Enter (3) for particular chapter", SCREEN_W / 2, 240, 15, -1);
+    textout_centre_ex(screen, font, "Choose the type of quizes you would like to play:", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
+    textout_centre_ex(screen, font, "Enter (1) for Entire Text", SCREEN_W / 2, 200, 15, -1);
+    textout_centre_ex(screen, font, "Enter (2) for Particular Unit", SCREEN_W / 2, 220, 15, -1);
+    textout_centre_ex(screen, font, "Enter (3) for Particular Chapter", SCREEN_W / 2, 240, 15, -1);
      
  }
 
