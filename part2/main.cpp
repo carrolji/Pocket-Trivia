@@ -140,7 +140,8 @@ int main(void) {
 			}
 			clear(screen);
 			check_score(correct,total_questions);
-			
+			//play the sample with looping
+	    	play_sample(samples[0], volume, panning, pitch, TRUE);
 					    		
 		}
     	else if(key[KEY_2]){
@@ -390,10 +391,10 @@ char * get_chapter(char *str_to, int size){
             if (cur_pos < 0) cur_pos = 0;
         }
         // lame redraw (use double buffer, whatever)
-        clear(screen);
+        rectfill(screen,(SCREEN_W / 2)+35,(SCREEN_H / 3)-10,600,(SCREEN_H / 3)+15,0);
         textout_centre_ex(screen, font, "CHAPTER :", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
     	textout_centre_ex(screen, font, "Enter a chapter number between 1 to 22 then Press Enter", SCREEN_W / 2, 200, 15, -1);
-    	textout_centre_ex(screen, font, str_to, (SCREEN_W / 2) +50, SCREEN_H / 3, 15, -1);
+    	textout_ex(screen, font, str_to, (SCREEN_W / 2) +50, SCREEN_H / 3, 15, -1);
        }
        
     	return str_to;
@@ -428,7 +429,7 @@ void read_text(int num,int quest){
 			if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				cout <<line << '\n';
 				question++;
-				textprintf_ex(screen, font, 5,80, 15,-1, "%s", line.c_str()); //printing questions
+				textprintf_ex(screen, font, 20,80, 15,-1, "%s", line.c_str()); //printing questions
 				
 				for(int n=1;n <= 5;n++){
 								
@@ -442,7 +443,7 @@ void read_text(int num,int quest){
 					}						
 					else{
 						line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
-						textprintf_ex(screen, font, 5,100+(n*10), 15,-1, "%s", line.c_str()); //printing the choices
+						textprintf_ex(screen, font, 20,100+(n*10), 15,-1, "%s", line.c_str()); //printing the choices
 						cout << line << endl;
 					}
 				}

@@ -5,7 +5,8 @@ A.	Evaluate the game B.	Sell the game C.	Test the game D. Release the game
 seeking a publisher?
 A.	Is it challenging? B.	Is it fun to play?
 C.	Is it graphically attractive?
-D. Is it marketable? 3. What is the second most important aspect of a game?
+D. Is it marketable? 
+3. What is the second most important aspect of a game?
 A. Graphics B. Sound C. Music D. Input
 4. What is an important factor of gameplay, in the sense of a 
 beginning, middle, and ending, that must be considered?
