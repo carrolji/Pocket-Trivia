@@ -3,8 +3,10 @@ B. pthread
 2. Which company maintains the multi-threading library for Windows systems used in this chapter?
 A. Red Hat 
 3. Which function will terminate a thread?
-C. pthread_exit 4. What type of parameter does a thread callback function require?
-B. void *data 5. What is the most common method of keeping a thread running inside a
+C. pthread_exit 
+4. What type of parameter does a thread callback function require?
+B. void *data 
+5. What is the most common method of keeping a thread running inside a
 thread callback function? 
 D. while loop
 6. What is a process that runs within the memory space of a single program but is executed separately from that program?

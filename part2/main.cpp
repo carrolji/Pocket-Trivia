@@ -106,7 +106,7 @@ int main(void) {
     			
 				clear(screen);
 				rest(1000);
-				textprintf_ex(screen, font, 5,5, 15,-1, "CHAPTER: %d", chapter);
+				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
 				
@@ -117,13 +117,15 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1); 
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
+					rectfill(screen,500,15,630,30,0); 
+					display_score(correct, total_questions); //displaying score
 				}
 				else{
 					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
-					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					get_answer(chapter,num[q],true);
 					rest(1000);
 				}
@@ -147,10 +149,11 @@ int main(void) {
 				rest(1000);
     			chapter = unit_list(unit);
 				
+				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
+				cout << "THIS IS CHAPTER: " << chapter << endl;
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
-				textprintf_ex(screen, font, 5,5, 15,-1, "CHAPTER: %d", chapter);
-				cout << "THIS IS CHAPTER: " << chapter << endl;
+				
 				answer = get_answer(chapter,num[q],false); //get the answer
 				user_ans = get_user_ans(answer);
 				
@@ -158,13 +161,15 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1); 
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
+					rectfill(screen,500,15,630,30,0); 
+					display_score(correct, total_questions); //displaying score
 				}
 				else{
 					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
-					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					get_answer(chapter,num[q],true);
 					rest(1000);
 				}
@@ -194,6 +199,7 @@ int main(void) {
 				rest(1000);
 			
 				//display score
+				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
 				display_score(correct, total_questions);
 				
 				read_text(chapter,num[q]); //read the question
@@ -205,12 +211,14 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "Correct" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1);
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1);
 					correct++;
+					rectfill(screen,500,15,630,30,0); 
+					display_score(correct, total_questions); //displaying score
 				}
 				else{
 					cout << "FALSE" << endl;
-					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					get_answer(chapter,num[q],true);
 					rest(1000);
@@ -388,7 +396,7 @@ char * get_chapter(char *str_to, int size){
 
 
 void display_score(int correct,int total_questions){
-	textprintf_right_ex(screen, font, SCREEN_W - 10, 20,
+	textprintf_right_ex(screen, font, SCREEN_W - 20, 20,
                           makecol(200, 200, 20), -1,
                           "Score %d : %d", correct,total_questions);
 }

@@ -3,7 +3,8 @@ RLE sprite?
 A. convert_rle_sprite
 B. get_rle_sprite
 C. make_rle_sprite
-D. create_rle_sprite 2. What function will draw a compressed RLE sprite?
+D. create_rle_sprite 
+2. What function will draw a compressed RLE sprite?
 A. draw_sprite B. copy_rle_sprite C. draw_rle_sprite D. rle_blit
 3. What function converts a normal bitmap into a compiled sprite?
 A. convert_compiled_sprite B. make_compiled_sprite C. create_compiled_sprite D. get_compiled_sprite

@@ -22,7 +22,7 @@ A.	State machine B.	Genetic algorithm C.	Fuzzy logic D. Neural network
 7. Which of the following uses predetermined behaviors of objects in 
 relation to the universe problem?
 A.	Genetic algorithm B.	Deterministic algorithm C.	Fuzzy logic D. Neural network
-8. Which type of deterministic algorithm ‘‘fakes’’ intelligence?
+8. Which type of deterministic algorithm "fakes" intelligence?
 A. Patterns B. Tracking C.	Random motion D. Logic
 9. Which type of deterministic algorithm will cause one object to follow 
 another?
