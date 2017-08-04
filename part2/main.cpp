@@ -90,10 +90,6 @@ int main(void) {
 		num[i] = num[r];
 		num[r] = temp;
 	}
-				
-	//print the array
-	for( i=0; i<10; i++ )
-		cout << "ARRAY" << num[i] << endl;
 	
 	//taken from: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html		
 	//////////////////RANDOM NUMBER GENERATED //////////////////	
@@ -121,14 +117,15 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
-					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1);
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
 					get_answer(chapter,num[q],true);
+					rest(1000);
 				}
 				rest(2000);
 				total_questions++;	
@@ -161,14 +158,15 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1); 
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
-					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1);
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
 					get_answer(chapter,num[q],true);
+					rest(1000);
 				}
 				rest(2000);
 				total_questions++;	
@@ -197,7 +195,6 @@ int main(void) {
 			
 				//display score
 				display_score(correct, total_questions);
-				cout <<"YARRRRRRRRRRRRRRRRR " << num[q] << endl;
 				
 				read_text(chapter,num[q]); //read the question
 				
@@ -208,14 +205,15 @@ int main(void) {
 				if (answer == (char)user_ans){
 					cout << "Correct" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
-					textout_ex(screen, font, "CORRECT!!!", 5, 370, 10, -1); 
+					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 15, -1);
 					correct++;
 				}
 				else{
 					cout << "FALSE" << endl;
-					textout_ex(screen, font, "WRONG!!!", 5, 370, 10, -1); 
+					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 15, -1);
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					get_answer(chapter,num[q],true);
+					rest(1000);
 				}
 				rest(2000);
 				total_questions++;	
@@ -240,12 +238,7 @@ void welcome(){
 		
 		for(int n=3; n<=10 ; n++){
     		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 10);	
-    		//circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 13);
-    		//circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 11);
     		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 12); //RED
-    		
-    		//circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 10);	
-    		//circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 13);
     		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 11);
     		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 12); //RED
     		
@@ -260,10 +253,8 @@ void welcome(){
 			circlefill(screen, n* 60, (SCREEN_H / 2.5), 5, 14); //YELLOW
 			circlefill(screen, n* 55, (SCREEN_H / 2.5), 5, 13); //PINK
 			circlefill(screen, n* 68, (SCREEN_H / 2.5), 5, 13); //PINK
-			
 			circlefill(screen, n* 55, (SCREEN_H / 2.5), 5, 10); //GREEN
 			circlefill(screen, n* 72, (SCREEN_H / 2.5), 5, 11); //BLUE
-			circlefill(screen, n* 60, (SCREEN_H / 2.5), 5, 14); //YELLOW
 				
 		}
 		textout_centre_ex(screen, font, "Welcome to Pocket Trivia Game",  SCREEN_W / 2, SCREEN_H / 3, 15, -1); 
@@ -484,7 +475,7 @@ char get_answer(int num, int quest, bool display){
 					}
 					else{
 						if(display == true && (line[0] == 'C' || line[0] == 'A'|| line[0] == 'B'|| line[0] == 'D')){
-							textprintf_ex(screen, font, 5,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
+							textprintf_centre_ex(screen, font, SCREEN_W / 2 ,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
@@ -502,7 +493,7 @@ char get_answer(int num, int quest, bool display){
 int get_user_ans(char answer){
 	int k;
 	int scancode ,ascii;
-	textout_ex(screen, font, "Enter your answer: ", 5, 350, 10, -1);	
+	textout_centre_ex(screen, font, "Enter your answer: ", SCREEN_W/2, 350, 15, -1);	
     
     while(!(key[KEY_A] || key[KEY_B] || key[KEY_C] || key[KEY_D])) {
     	k = readkey();
@@ -511,7 +502,7 @@ int get_user_ans(char answer){
     	cout << "USER ANSWER: " << (char)ascii << endl; 
     	ascii = ascii - 32; //convert to upper letter
     
-   		textprintf_ex(screen, font, 200, 350, 15, 0,
+   		textprintf_ex(screen, font, 400, 350, 15, 0,
             			"%c", (char)ascii);
     
     
@@ -524,23 +515,23 @@ int get_user_ans(char answer){
 void check_score(int answer, int question){
 	question--;
 	int total_score = ((float)answer/ (float)question)*100;
-	textprintf_ex(screen, font, 5,80, 15,-1, "You have scored: %d %%", total_score);
+	textprintf_centre_ex(screen, font, SCREEN_W / 2,SCREEN_H / 3, 15,-1, "You have scored: %d %%", total_score);
 	if(total_score==100){
-		textout_ex(screen, font, "WOW! Perfect score! Congratulations!", 5, 90, 10, -1);
+		textout_centre_ex(screen, font, "WOW! Perfect score! Congratulations!", SCREEN_W / 2, 200, 15, -1);
 	}
 	else if(total_score>80){
-		textout_ex(screen, font, "Great job!", 5, 90, 10, -1);
+		textout_centre_ex(screen, font, "Great job!", SCREEN_W / 2, 200, 15, -1);
 	}
 	else if(total_score>50){
-		textout_ex(screen, font, "Well done!", 5, 90, 10, -1);
+		textout_centre_ex(screen, font, "Well done!",SCREEN_W / 2, 200, 15, -1);
 	}
 	else if(total_score==50){
-		textout_ex(screen, font, "You passed!", 5, 90, 10, -1);
+		textout_centre_ex(screen, font, "You passed!", SCREEN_W / 2, 200, 15, -1);
 	}
 	else{
-		textout_ex(screen, font, "Sorry try again next time", 5, 90, 10, -1);
+		textout_centre_ex(screen, font, "Sorry try again next time",SCREEN_W / 2, 200, 15, -1);
 	}
-	textout_ex(screen, font, "Esc to quit the game", 5, 110, 10, -1);
+	textout_centre_ex(screen, font, "Esc to quit the game",SCREEN_W / 2, 220, 15, -1);
 	
 }
 
