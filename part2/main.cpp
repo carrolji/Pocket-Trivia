@@ -184,7 +184,6 @@ int main(void) {
     		clear(screen);
     		rest(1000);
 			
-			
 			while(!key[KEY_ENTER]){
 				test = get_chapter(my_str, 40);
 				cout << "USER INPUT: " <<  test << endl;
@@ -291,8 +290,7 @@ void menu()
 int get_unit(){
 	int unit;
 	//Print out unit list
-	textout_ex(screen, font, "For particular unit: ", 5, 10, 10, -1);
-    textout_ex(screen, font, "Enter a number between 1 to 8 then press Enter:", 5, 20, 10, -1);
+    textout_centre_ex(screen, font, "Enter a unit number between 1 to 8 then Press Enter", SCREEN_W / 2, 200, 15, -1);
 	
 	while(!key[KEY_ENTER]){
     	if (key[KEY_1]){
@@ -319,10 +317,9 @@ int get_unit(){
 		else if (key[KEY_8]){
   			unit =8;
 		}
-		textprintf_ex(screen, font, 200, 50, 15, 0,
-            		"UNIT: %d", unit);
+        textprintf_centre_ex(screen, font,  SCREEN_W / 2, SCREEN_H / 3, 15, 0, "UNIT : %d", unit);
 				
-			};
+		};
 	return unit;
 }
 
@@ -389,10 +386,9 @@ char * get_chapter(char *str_to, int size){
         }
         // lame redraw (use double buffer, whatever)
         clear(screen);
-        textout_ex(screen, font, "For particular chapter: ", 5, 10, 10, -1);
-    	textout_ex(screen, font, "Enter a number between 1 to 22:", 5, 20, 10, -1);
-        textout_ex(screen,font, "CHAPTER: ", 200, 50, 10, -1);
-        textout_ex(screen,font, str_to, 270, 50, 10, -1);
+        textout_centre_ex(screen, font, "CHAPTER :", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
+    	textout_centre_ex(screen, font, "Enter a chapter number between 1 to 22 then Press Enter", SCREEN_W / 2, 200, 15, -1);
+    	textout_centre_ex(screen, font, str_to, (SCREEN_W / 2) +50, SCREEN_H / 3, 15, -1);
        }
        
     	return str_to;
