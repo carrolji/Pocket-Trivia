@@ -27,17 +27,18 @@ int rand_num(int min, int max);
 int chapter;
 char my_str[3];
 char *test;
+int unit;
 
 int main(void) {
-	int k;
+	int k, i ,r , temp;
+	int num[10];
 	int user_ans;
 	char answer;
-	int scancode ,ascii;
 	int ret;
 	int correct = 0;
 	int total_questions = 1;
 	int q = 0;
-	int unit;
+	
 	
 	//initialize program
 	allegro_init();  
@@ -72,16 +73,14 @@ int main(void) {
     samples[3] = load_sample("theme_song.wav");
 	samples[4] = load_sample("select.wav");
 	
+	//initialize game menu and play music
 	play_sample(samples[3], volume, panning, pitch, TRUE);
     welcome();
     menu();
     stop_sample(samples[3]);
     play_sample(samples[4], volume+100, panning, pitch, FALSE);
     
-    //////////////////RANDOM NUMBER GENERATED //////////////////
-    		
-	int i , r , temp;
-	int num[10];
+    /*-----------------GENERATED RANDOM NUMBER---------------*/
 				
 	//Fill array with desired numbers
 	for( temp=0,i=0; temp<10; i++,temp++ )
@@ -97,38 +96,38 @@ int main(void) {
 	}
 	
 	//taken from: http://www.codenirvana.net/2014/08/generate-random-number-in-range-c-program.html		
-	//////////////////RANDOM NUMBER GENERATED //////////////////	
+	/*----------------- GENERATED RANDOM NUMBER ---------------*/	
 			
 	while(!key[KEY_ESC]){
 		
 		if (key[KEY_1]){
-			play_sample(samples[4], volume+100, panning, pitch, FALSE);
+			play_sample(samples[4], volume+100, panning, pitch, FALSE); //Play button music
 			clear(screen);
     		
     		while(q <= 9){
-    			chapter = rand_num(1,22);
-    			
+    			chapter = rand_num(1,22); // Get random chapter number between 1 to 22
 				clear(screen);
 				rest(500);
 				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
-				display_score(correct, total_questions); //displaying score
+				display_score(correct, total_questions); //display score
 				read_text(chapter,num[q]); //read the question
 				
 				answer = get_answer(chapter,num[q],false); //get the answer
-				user_ans = get_user_ans(answer);
-				
+				user_ans = get_user_ans(answer); //get user answer
 				
 				if (answer == (char)user_ans){
+					//When user answer correctly
 					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
 					rectfill(screen,500,15,630,30,0); 
-					display_score(correct, total_questions); //displaying score
+					display_score(correct, total_questions); //update new score
 				}
 				else{
+					//When user answer incorrectly
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
-					get_answer(chapter,num[q],true);
+					get_answer(chapter,num[q],true); //display the correct answer
 					rest(1000);
 				}
 				rest(2000);
@@ -136,37 +135,35 @@ int main(void) {
 				q++;
 			}
 			clear(screen);
-			check_score(correct,total_questions);
-			//play the sample with looping
-	    	play_sample(samples[0], volume, panning, pitch, TRUE);
+			check_score(correct,total_questions); //Print out score
+	    	play_sample(samples[0], volume, panning, pitch, TRUE); //Loop clapping sound
 					    		
 		}
     	else if(key[KEY_2]){
     		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		clear(screen);
     		
-    		unit = get_unit();
+    		unit = get_unit(); //Get user input unit
     		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		
     		while(q <= 9){
 				clear(screen);
 				rest(500);
-    			chapter = unit_list(unit);
+    			chapter = unit_list(unit); //Get random chapter from unit list
 				
 				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
-				display_score(correct, total_questions); //displaying score
-				read_text(chapter,num[q]); //read the question
+				display_score(correct, total_questions); 
+				read_text(chapter,num[q]); 
 				
-				answer = get_answer(chapter,num[q],false); //get the answer
+				answer = get_answer(chapter,num[q],false); 
 				user_ans = get_user_ans(answer);
-				
 				
 				if (answer == (char)user_ans){
 					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
 					rectfill(screen,500,15,630,30,0); 
-					display_score(correct, total_questions); //displaying score
+					display_score(correct, total_questions); 
 				}
 				else{
 					play_sample(samples[2], volume, panning, pitch, FALSE);
@@ -180,7 +177,6 @@ int main(void) {
 			}
 			clear(screen);
 			check_score(correct,total_questions);
-			//play the sample with looping
 	    	play_sample(samples[0], volume, panning, pitch, TRUE);
     			
 		}
@@ -190,6 +186,7 @@ int main(void) {
 			
 			bool wrong_input = true;
 			while(wrong_input){
+				// Get chapter from user input, input must be between 1-22
 				test = get_chapter(my_str, 3);
 				chapter = atoi(test);
 				if(chapter > 0 && chapter < 23){
@@ -202,13 +199,11 @@ int main(void) {
 				clear(screen);					
 				rest(500);
 			
-				//display score
 				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
 				display_score(correct, total_questions);
 				
-				read_text(chapter,num[q]); //read the question
-				
-				answer = get_answer(chapter,num[q],false); //get the answer
+				read_text(chapter,num[q]); 
+				answer = get_answer(chapter,num[q],false);
 				user_ans = get_user_ans(answer);
 				
 				
@@ -217,7 +212,7 @@ int main(void) {
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1);
 					correct++;
 					rectfill(screen,500,15,630,30,0); 
-					display_score(correct, total_questions); //displaying score
+					display_score(correct, total_questions); 
 				}
 				else{
 					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
@@ -231,11 +226,8 @@ int main(void) {
 			}
 			clear(screen);
 			check_score(correct,total_questions);
-			//play the sample with looping
-	    	play_sample(samples[0], volume, panning, pitch, TRUE);
+	    	play_sample(samples[0], volume, panning, pitch, TRUE); 
 		}
-		
-	    
 			
 	}; 
 	allegro_exit(); 
@@ -244,6 +236,8 @@ int main(void) {
 END_OF_MAIN();
 
 void welcome(){
+	/* Printing welcome game page
+	 Wait for the user input ENTER */
 	while (!key[KEY_ENTER]){
 		
 		for(int n=3; n<=10 ; n++){
@@ -278,8 +272,8 @@ void welcome(){
     clear(screen);
 }
 
-void menu()
-{
+void menu(){
+	// Printing game menu choices
     textout_centre_ex(screen, font, "Choose the type of quizes you would like to play:", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
     textout_centre_ex(screen, font, "Enter (1) for Entire Text", SCREEN_W / 2, 200, 15, -1);
     textout_centre_ex(screen, font, "Enter (2) for Particular Unit", SCREEN_W / 2, 220, 15, -1);
@@ -289,8 +283,7 @@ void menu()
 
 
 int get_unit(){
-	int unit;
-	//Print out unit list
+	//Get the unit input from the user
     textout_centre_ex(screen, font, "Enter a unit number between 1 to 8 then Press Enter", SCREEN_W / 2, 200, 15, -1);
 	
 	while(!key[KEY_ENTER]){
@@ -325,7 +318,8 @@ int get_unit(){
 }
 
 int rand_num(int min, int max){
-	srand(time(NULL)); // Seed the time
+	// Randomize the number given range
+	srand(time(NULL)); 
 	int finalNum = rand()%(max-min+1)+min;
 	return finalNum;
 	
@@ -364,7 +358,7 @@ int unit_list(int unit){
 	
 }
 char * get_chapter(char *str_to, int size){
-	
+	// Get user input chapter 
     int cur_pos = 0; // position of caret
     int the_key = 0;
     int i;
@@ -399,12 +393,14 @@ char * get_chapter(char *str_to, int size){
 
 
 void display_score(int correct,int total_questions){
+	// Display game score
 	textprintf_right_ex(screen, font, SCREEN_W - 20, 20,
                           makecol(200, 200, 20), -1,
                           "Score %d : %d", correct,total_questions);
 }
 
 void read_text(int num,int quest){
+	// Read text file and print on the screen
 	char question = '0'+quest; //convert int to char
 	
 	ifstream myfile;
@@ -450,6 +446,7 @@ void read_text(int num,int quest){
 }
 
 char get_answer(int num, int quest, bool display){
+	//Read answer file and print the answer when the it is incorrect
 	char question = '0'+quest;
 	
 	ifstream myfile;
@@ -500,6 +497,7 @@ char get_answer(int num, int quest, bool display){
 }
 
 int get_user_ans(char answer){
+	// Get answer from key board input
 	int k;
 	int scancode ,ascii;
 	textout_centre_ex(screen, font, "Enter your answer: ", SCREEN_W/2, 350, 15, -1);	
@@ -521,6 +519,8 @@ int get_user_ans(char answer){
 }
 
 void check_score(int answer, int question){
+	//Check for user score and convert it to percentage
+	//Print out ending messages
 	question--;
 	int total_score = ((float)answer/ (float)question)*100;
 	textprintf_centre_ex(screen, font, SCREEN_W / 2,SCREEN_H / 3, 15,-1, "You have scored: %d %%", total_score);
