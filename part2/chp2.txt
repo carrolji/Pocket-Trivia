@@ -14,7 +14,8 @@ D.	Microsoft Pascal
 A. 3.0 B. 4.0 C. 5.0 D. 6.0
 6. Which version of Visual C++ are we focusing primarily on in this book?
 A. 6.0 B.	7.0 (2002) C.	7.1 (2003) D.	8.0 (2005)
-7. What distinctive feature of Dev-C++ sets it apart from commercial devel- opment tools?
+7. What distinctive feature of Dev-C++ sets it apart from commercial 
+devel- opment tools?
 A.	Dev-C++ is open-source B.	Dev-C++ is free C.	Dev-C++ is multi-platform D.	All of the above
 8. What is the name of the game programming library featured in this 
 chapter?

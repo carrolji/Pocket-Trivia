@@ -25,7 +25,7 @@ int unit_list(int unit);
 int rand_num(int min, int max);
 
 int chapter;
-char my_str[40];
+char my_str[3];
 char *test;
 
 int main(void) {
@@ -110,8 +110,8 @@ int main(void) {
     			cout << "THIS IS CHAPTER: " << chapter << endl;
     			
 				clear(screen);
-				rest(1000);
-				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
+				rest(500);
+				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
 				
@@ -153,10 +153,10 @@ int main(void) {
     		
     		while(q <= 9){
 				clear(screen);
-				rest(1000);
+				rest(500);
     			chapter = unit_list(unit);
 				
-				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
+				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
 				cout << "THIS IS CHAPTER: " << chapter << endl;
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
@@ -194,19 +194,24 @@ int main(void) {
     		play_sample(samples[4], volume+100, panning, pitch, FALSE);
     		clear(screen);
 			
-			while(!key[KEY_ENTER]){
-				test = get_chapter(my_str, 40);
+			bool wrong_input = true;
+			while(wrong_input){
+				test = get_chapter(my_str, 3);
 				cout << "USER INPUT: " <<  test << endl;
 				chapter = atoi(test);
-			}
+				if(chapter > 0 && chapter < 23){
+					wrong_input = false;
+				}	
+			}	
+				
     		cout << "CHAPTER!!!!" << chapter << endl;
     		play_sample(samples[4], volume+100, panning, pitch, FALSE);
 			while(q <= 9){
 				clear(screen);					
-				rest(1000);
+				rest(500);
 			
 				//display score
-				textprintf_ex(screen, font, 20,50, 15,-1, "CHAPTER: %d", chapter);
+				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
 				display_score(correct, total_questions);
 				
 				read_text(chapter,num[q]); //read the question
@@ -252,9 +257,9 @@ void welcome(){
 	while (!key[KEY_ENTER]){
 		
 		for(int n=3; n<=10 ; n++){
-    		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 10);	
+    		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 10);	//GREEN
     		circlefill(screen, n* 50, (SCREEN_H / 3.5), 5, 12); //RED
-    		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 11);
+    		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 11); //BLUE
     		circlefill(screen, n* 50, (SCREEN_H / 2.5), 5, 12); //RED
     		
 		}
@@ -334,8 +339,8 @@ int rand_num(int min, int max){
 	int finalNum = rand()%(max-min+1)+min;
 	return finalNum;
 	
-	//taken from: https://stackoverflow.com/questions/12657962/how-do-i-generate-a-random-number-between-two-variables-that-i-have-stored 
 }
+
 int unit_list(int unit){
 	// List of unit with the following chapter(s)
 	int chapter;
@@ -378,7 +383,7 @@ char * get_chapter(char *str_to, int size){
 
     while (the_key>>8 != KEY_ENTER){
         the_key = readkey();
-        if ((the_key & 0xff) >= ' ') // get only valid chars
+        if ((the_key & 0xff) >= ' ' && (the_key & 0xff) <= '9'  ) // get only numbers
         {
             str_to[cur_pos] = the_key & 0xff;
             cur_pos++;
@@ -390,7 +395,7 @@ char * get_chapter(char *str_to, int size){
             cur_pos --;
             if (cur_pos < 0) cur_pos = 0;
         }
-        // lame redraw (use double buffer, whatever)
+        
         rectfill(screen,(SCREEN_W / 2)+35,(SCREEN_H / 3)-10,600,(SCREEN_H / 3)+15,0);
         textout_centre_ex(screen, font, "CHAPTER :", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
     	textout_centre_ex(screen, font, "Enter a chapter number between 1 to 22 then Press Enter", SCREEN_W / 2, 200, 15, -1);
@@ -431,19 +436,18 @@ void read_text(int num,int quest){
 				question++;
 				textprintf_ex(screen, font, 20,80, 15,-1, "%s", line.c_str()); //printing questions
 				
-				for(int n=1;n <= 5;n++){
+				for(int n=0;n <= 10;n=n+2){
 								
 					getline (myfile, line);
-						
+					line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
 					if(line.length()> 0 && line[0] == question){
 						break;
 					}
 					if(line.length()> 0 && line[0] == '1'){ //detect if question 10 follows question 9
 						break; //break the for loop
-					}						
+					}					
 					else{
-						line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
-						textprintf_ex(screen, font, 20,100+(n*10), 15,-1, "%s", line.c_str()); //printing the choices
+						textprintf_ex(screen, font, 40,110+(n*20), 15,-1, "%s", line.c_str()); //printing the choices
 						cout << line << endl;
 					}
 				}
@@ -490,7 +494,7 @@ char get_answer(int num, int quest, bool display){
 					}
 					else{
 						if(display == true && (line[0] == 'C' || line[0] == 'A'|| line[0] == 'B'|| line[0] == 'D')){
-							textprintf_centre_ex(screen, font, SCREEN_W / 2 ,400, 15,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
+							textprintf_centre_ex(screen, font, SCREEN_W / 2 ,400, 10,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						answer = line[0];
 						cout << "ANSWER CHARACTER: " << answer << endl;
