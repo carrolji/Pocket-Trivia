@@ -20,5 +20,8 @@ A. -t <type> B. -a <type> C. -d <type> D. -s <type>
 added to the datafile?
 A. -c <depth> B. -d <depth> C. -bpp <depth> D. -color <depth>
 10. Which function loads an individual object from a datafile?
-A. load_data_object B. load_object_file C. load_datafile D. load_datafile_object
+A. load_data_object 
+B. load_object_file 
+C. load_datafile 
+D. load_datafile_object
  

@@ -13,7 +13,10 @@ A.	Free Software Foundation B. GNU C. Freeware D. Open Source
 A. 1 B. 2 C. 3 D. 4
 6. What is the technical terminology for handling two objects that crash 
 in the game?
-A.	Crash override B.	Sprite insurance C.	Collision detection D. Handling the crash
+A.	Crash override 
+B.	Sprite insurance 
+C.	Collision detection 
+D. Handling the crash
 7. What function in Tank War keeps the tanks from colliding with other 
 objects?
 A. makepath B. clearpath C. buildpath D. dontcollide
@@ -21,6 +24,9 @@ A. makepath B. clearpath C. buildpath D. dontcollide
 screen is black?
 A. getpixel B. findcolor C. getcolor D. checkpixel
 9. What is the standard constant used to run Allegro in windowed mode?
-A. GFX_RUNINA_WINDOW B. GFX_DETECT_WINDOWED C. GFX_AUTODETECT_WINDOWS D. GFX_AUTODETECT_WINDOWED
+A. GFX_RUNINA_WINDOW 
+B. GFX_DETECT_WINDOWED 
+C. GFX_AUTODETECT_WINDOWS 
+D. GFX_AUTODETECT_WINDOWED
 10. What function in Allegro is used to slow the game down?
 A. pause B. slow C. rest D. stop

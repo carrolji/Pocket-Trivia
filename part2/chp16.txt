@@ -11,7 +11,10 @@ A. BG1 B. BACK C. BG D. BGND
 first foreground layer?
 A. FG1 B. FORE1 C. FG D. LV1
 5. Which dialog box allows the editing of tile properties in Mappy?
-A.	Tile Properties B.	Map Tile Editor C.	Map Block Editor D. Block Properties
+A.	Tile Properties 
+B.	Map Tile Editor 
+C.	Map Block Editor 
+D. Block Properties
 6. Which menu item brings up the Range Alter Block Properties dialog?
 A.	Range Alter Block Properties B.	Range Edit Blocks
 C.	Range Edit Tile Properties

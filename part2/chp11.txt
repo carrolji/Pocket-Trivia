@@ -1,5 +1,8 @@
 1. Why is it important to use a timer in a game?
-A.	To maintain a consistent frame rate B.	To include support for interrupts C.	To make the program thread-safe D. To delegate code to multiple threads
+A.	To maintain a consistent frame rate 
+B.	To include support for interrupts 
+C.	To make the program thread-safe 
+D. To delegate code to multiple threads
 2. Which Allegro timer function slows down the program using a callback 
 function?
 A. callback_rest B. sleep_callback C. rest D. rest_callback
@@ -23,7 +26,13 @@ the pro- gram to pause for a certain number of millseconds?
 A. wait B. pause C. rest D. sleep
 9. What function must you call to prepare a variable for use within an 
 inter- rupt callback routine?
-A. lock_object B. LOCK_VARIABLE C. prepare_variable D. PROTECT_VARIABLE
+A. lock_object 
+B. LOCK_VARIABLE 
+C. prepare_variable 
+D. PROTECT_VARIABLE
 10. What function must you call to prepare a function for use as an 
 interrupt callback?
-A. lock_object B. PREPARE_FUNCTION C. prepare_routine D. LOCK_FUNCTION
+A. lock_object 
+B. PREPARE_FUNCTION 
+C. prepare_routine 
+D. LOCK_FUNCTION

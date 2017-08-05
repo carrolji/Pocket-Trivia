@@ -17,9 +17,18 @@ A. mutex B. process C. thread D. interrupt
 that data from being used by another thread until it is unlocked?
 A. mutex B. process C. thread D. interrupt
 8. What does pthread stand for?
-A.	Protected Thread B.	Public Thread C.	POSIX Thread D. Purple Thread
+A.	Protected Thread 
+B.	Public Thread 
+C.	POSIX Thread 
+D. Purple Thread
 9. What is the name of the function used to create a new thread?
-A. create_posix_thread B. pthread_create C. install_thread D. thread_callback
+A. create_posix_thread 
+B. pthread_create 
+C. install_thread 
+D. thread_callback
 10. What is the name of the function that locks a mutex?
-A. lock_pthread_mutex B. lock_mutex C. pthread_lock_mutex D. pthread_mutex_lock
+A. lock_pthread_mutex 
+B. lock_mutex 
+C. pthread_lock_mutex 
+D. pthread_mutex_lock
  

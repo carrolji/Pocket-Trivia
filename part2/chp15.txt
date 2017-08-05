@@ -13,7 +13,10 @@ A. 30,000 B. 1,500 C. 48,000 D. 32,768
 6. Which of the following games is a vertical scrolling shooter?
 A. R-Type B.	Mars Matrix C. Contra D. Castlevania
 7. Who created the artwork featured in this chapter?
-A.	Ray Kurzweil B.	Clifford Stoll C.	Ari Feldman D. Nicholas Negroponte
+A.	Ray Kurzweil 
+B.	Clifford Stoll 
+C.	Ari Feldman 
+D. Nicholas Negroponte
 8. Which MappyAL function loads a map file? 
 A. LoadMap
 B. MapLoad

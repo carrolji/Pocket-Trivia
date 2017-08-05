@@ -436,7 +436,7 @@ void read_text(int num,int quest){
 				question++;
 				textprintf_ex(screen, font, 20,80, 15,-1, "%s", line.c_str()); //printing questions
 				
-				for(int n=0;n <= 10;n=n+2){
+				for(int n=0;n <= 18;n=n+2){
 								
 					getline (myfile, line);
 					line.erase(std::remove(line.begin(), line.end(), '\t'), line.end()); // REMOVE TAB
@@ -447,7 +447,7 @@ void read_text(int num,int quest){
 						break; //break the for loop
 					}					
 					else{
-						textprintf_ex(screen, font, 40,110+(n*20), 15,-1, "%s", line.c_str()); //printing the choices
+						textprintf_ex(screen, font, 40,105+(n*18), 15,-1, "%s", line.c_str()); //printing the choices
 						cout << line << endl;
 					}
 				}
