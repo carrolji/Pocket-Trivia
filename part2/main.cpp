@@ -107,7 +107,6 @@ int main(void) {
     		
     		while(q <= 9){
     			chapter = rand_num(1,22);
-    			cout << "THIS IS CHAPTER: " << chapter << endl;
     			
 				clear(screen);
 				rest(500);
@@ -120,7 +119,6 @@ int main(void) {
 				
 				
 				if (answer == (char)user_ans){
-					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
@@ -128,7 +126,6 @@ int main(void) {
 					display_score(correct, total_questions); //displaying score
 				}
 				else{
-					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					get_answer(chapter,num[q],true);
@@ -157,7 +154,6 @@ int main(void) {
     			chapter = unit_list(unit);
 				
 				textprintf_ex(screen, font, 20,50, 11,-1, "CHAPTER: %d", chapter);
-				cout << "THIS IS CHAPTER: " << chapter << endl;
 				display_score(correct, total_questions); //displaying score
 				read_text(chapter,num[q]); //read the question
 				
@@ -166,7 +162,6 @@ int main(void) {
 				
 				
 				if (answer == (char)user_ans){
-					cout << "True" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1); 
 					correct++;
@@ -174,7 +169,6 @@ int main(void) {
 					display_score(correct, total_questions); //displaying score
 				}
 				else{
-					cout << "FALSE" << endl;
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					get_answer(chapter,num[q],true);
@@ -197,14 +191,12 @@ int main(void) {
 			bool wrong_input = true;
 			while(wrong_input){
 				test = get_chapter(my_str, 3);
-				cout << "USER INPUT: " <<  test << endl;
 				chapter = atoi(test);
 				if(chapter > 0 && chapter < 23){
 					wrong_input = false;
 				}	
 			}	
 				
-    		cout << "CHAPTER!!!!" << chapter << endl;
     		play_sample(samples[4], volume+100, panning, pitch, FALSE);
 			while(q <= 9){
 				clear(screen);					
@@ -221,7 +213,6 @@ int main(void) {
 				
 				
 				if (answer == (char)user_ans){
-					cout << "Correct" << endl;
 					play_sample(samples[1], volume, panning, pitch, FALSE);
 					textout_centre_ex(screen, font, "CORRECT!", SCREEN_W / 2, 370, 10, -1);
 					correct++;
@@ -229,7 +220,6 @@ int main(void) {
 					display_score(correct, total_questions); //displaying score
 				}
 				else{
-					cout << "FALSE" << endl;
 					textout_centre_ex(screen, font, "INCORRECT", SCREEN_W / 2, 370, 12, -1);
 					play_sample(samples[2], volume, panning, pitch, FALSE);
 					get_answer(chapter,num[q],true);
@@ -399,6 +389,7 @@ char * get_chapter(char *str_to, int size){
         rectfill(screen,(SCREEN_W / 2)+35,(SCREEN_H / 3)-10,600,(SCREEN_H / 3)+15,0);
         textout_centre_ex(screen, font, "CHAPTER :", SCREEN_W / 2, SCREEN_H / 3, 15, -1);
     	textout_centre_ex(screen, font, "Enter a chapter number between 1 to 22 then Press Enter", SCREEN_W / 2, 200, 15, -1);
+    	textout_centre_ex(screen, font, "< Backspace to delete >", SCREEN_W / 2, 220, 15, -1);
     	textout_ex(screen, font, str_to, (SCREEN_W / 2) +50, SCREEN_H / 3, 15, -1);
        }
        
@@ -432,7 +423,7 @@ void read_text(int num,int quest){
 			getline (myfile, line);
     		
 			if (line.length() > 0 && (line[0] == question || line[1] == question) ){
-				cout <<line << '\n';
+
 				question++;
 				textprintf_ex(screen, font, 20,80, 15,-1, "%s", line.c_str()); //printing questions
 				
@@ -448,7 +439,6 @@ void read_text(int num,int quest){
 					}					
 					else{
 						textprintf_ex(screen, font, 40,105+(n*18), 15,-1, "%s", line.c_str()); //printing the choices
-						cout << line << endl;
 					}
 				}
 				
@@ -497,7 +487,7 @@ char get_answer(int num, int quest, bool display){
 							textprintf_centre_ex(screen, font, SCREEN_W / 2 ,400, 10,-1, "THE CORRECT ANSWER IS: %s", line.c_str());	
 						}
 						answer = line[0];
-						cout << "ANSWER CHARACTER: " << answer << endl;
+						cout << "ANSWER : " << answer << endl;
 					}
 				}
 			}
@@ -518,7 +508,6 @@ int get_user_ans(char answer){
     	k = readkey();
     	scancode = (k >> 8);
     	ascii = scancode_to_ascii(scancode);
-    	cout << "USER ANSWER: " << (char)ascii << endl; 
     	ascii = ascii - 32; //convert to upper letter
     
    		textprintf_ex(screen, font, 400, 350, 15, 0,
