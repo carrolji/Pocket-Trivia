@@ -1,4 +1,4 @@
-﻿1. Which of the following is not one of the three deterministic algorithms 
+1. Which of the following is not one of the three deterministic algorithms 
 covered in this chapter?
 A.	Random logic B. Tracking C. Conditions D. Patterns
 2. Can fuzzy matrices be used without multiplying the input memberships? 

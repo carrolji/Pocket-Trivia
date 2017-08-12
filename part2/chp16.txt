@@ -1,4 +1,4 @@
-﻿1. Which term is often used to describe a horizontal-scrolling game with 
+1. Which term is often used to describe a horizontal-scrolling game with 
 a walking character?
 A. Shooter B. Platform C. RPG D. Walker
 2. What is the name of the map-editing tool you have used in the last 
@@ -25,7 +25,7 @@ A. BLOCKS B. TILEBLOCK C. BLKSTR D. BLKINFO
 8. What MappyAL function returns a pointer to a block specified by 
 the (x,y) parameters?
 A. MapGetBlock B. GetDataBlock C. GetTileAt D. MapGetTile
-9. What is the name of the function that draws the map’s background?
+9. What is the name of the function that draws the map�s background?
 A. MapDrawBG B. DrawBackground C. DrawMapBack D. DrawMapBG
 10. Which MappyAL block struct member was used to detect collisions 
 in the sample program?

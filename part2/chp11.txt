@@ -15,7 +15,8 @@ variables?
 A. danger B. cautious C. volatile D. corruptible
 6. What function must you call during program startup to initialize the 
 timer system?
-A. create_timer B. init_timer
+A. create_timer 
+B. init_timer
 C. install_timer
 D. make_timer 
 7. What is the name of the function that provides a callback 

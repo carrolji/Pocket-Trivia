@@ -1,4 +1,4 @@
-﻿1. What is the name of the map editor we’ve been using in this chapter?
+1. What is the name of the map editor we�ve been using in this chapter?
 A.	Tile Editor B.	Map Edit C. Mappy D. TestMappy
 2. What is the name of the function used to load a level/map file?
 A. MapLoad B. LoadLevel C. OpenMap D. ReadLevel
@@ -23,3 +23,5 @@ memory used by map data?
 A. MapFreeMem B. freemapdata C. deleteMap D. clearMapData
 10. Which MappyAL library function loads a Mappy file?
 A. MapLoad B. LoadMap C. MappyLoad D. OpenMap
+
+

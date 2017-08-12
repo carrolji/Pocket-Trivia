@@ -1,11 +1,11 @@
-1. What is the home site for Mappy? 
+﻿1. What is the home site for Mappy? 
 C. http://www.tilemap.co.uk
 2. What kind of information is stored in a map file? 
 A. Data that represent the tiles comprising a game world
 3. What name is given to the graphic images that make up a Mappy level?
 D. Tiles
 4. What is the default extension of a Mappy file? 
-C. FMP
+C. FMPc
 5. Where does Mappy store the saved tile images? 
 B. Inside the map file
 6. What is one example of a retail game that uses Mappy levels? 

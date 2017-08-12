@@ -1,13 +1,14 @@
-﻿1. What is the first step you must take before attempting to get your game 
+1. What is the first step you must take before attempting to get your game 
 published?
-A.	Evaluate the game 
-B.	Sell the game 
-C.	Test the game 
+A. Evaluate the game
+B. Sell the game
+C. Test the game 
 D. Release the game
 2. What is the most important question to consider in a game before 
 seeking a publisher?
-A.	Is it challenging? B.	Is it fun to play?
-C.	Is it graphically attractive?
+A. Is it challenging? 
+B. Is it fun to play?
+C. Is it graphically attractive?
 D. Is it marketable? 
 3. What is the second most important aspect of a game?
 A. Graphics B. Sound C. Music D. Input
@@ -30,9 +31,8 @@ D. A tracking device
 A. Deadline B. Milestone C. Achievement D. Release
 9. Who created the game Smugglers 2?
 A.	Niels Bauer 
-B. Andre ́LaMothe 
+B. Andre �LaMothe 
 C.	John Carmack 
 D. Ellie Arroway
 10. For whom should you create a game for the purpose of entertainment?
 A. Yourself B. Gamers C. Publishers D. Marketers
- 
