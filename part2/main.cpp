@@ -464,7 +464,7 @@ char get_answer(int num, int quest, bool display){
 	if (myfile.is_open()){
 		while(!myfile.eof()){
 			getline (myfile, line);
-    		
+			
     		if (line.length() > 0 && (line[0] == question || line[1] == question) ){
 				question++;
 				
@@ -537,7 +537,7 @@ void check_score(int answer, int question){
 		textout_centre_ex(screen, font, "You passed!", SCREEN_W / 2, 200, 15, -1);
 	}
 	else{
-		textout_centre_ex(screen, font, "Sorry try again next time",SCREEN_W / 2, 200, 15, -1);
+		textout_centre_ex(screen, font, "Study more next time!",SCREEN_W / 2, 200, 15, -1);
 	}
 	textout_centre_ex(screen, font, "Esc to quit the game",SCREEN_W / 2, 220, 15, -1);
 	
